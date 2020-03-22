@@ -9,20 +9,45 @@ import com.lsm1998.chat.proto.DataProto;
  * @author: lsm
  * @create: 2020-03-20 18:57
  **/
-public class ProtoBufUtil {
-
-    public static byte[] to(DataProto.MsgReq msgReq) {
-        return msgReq.toByteArray();
+public class ProtoBufUtil
+{
+    public static byte[] toReqBytes(DataProto.MsgReq req)
+    {
+        return req.toByteArray();
     }
 
-    public static DataProto.MsgReq fo(byte[] bytes) {
-        if (bytes == null) {
-            return null;
+    public static byte[] toRspBytes(DataProto.MsgRsp rsp)
+    {
+        return rsp.toByteArray();
+    }
+
+    public static DataProto.MsgReq parseReqBytes(byte[] bytes)
+    {
+        if (bytes != null)
+        {
+            try
+            {
+                return DataProto.MsgReq.parseFrom(bytes);
+            } catch (InvalidProtocolBufferException e)
+            {
+
+            }
         }
-        try {
-            return DataProto.MsgReq.parseFrom(bytes);
-        } catch (InvalidProtocolBufferException e) {
-            return null;
+        return null;
+    }
+
+    public static DataProto.MsgRsp parseRspBytes(byte[] bytes)
+    {
+        if (bytes != null)
+        {
+            try
+            {
+                return DataProto.MsgRsp.parseFrom(bytes);
+            } catch (InvalidProtocolBufferException e)
+            {
+
+            }
         }
+        return null;
     }
 }

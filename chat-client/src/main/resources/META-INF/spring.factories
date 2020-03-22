@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.lsm1998.chat.auto.sound.SoundAutoConfiguration

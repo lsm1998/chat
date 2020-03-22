@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: 47.95.239.29
+      port: 27017
+      database: chat
+      username: lsm
+      password: lsm123

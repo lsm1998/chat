@@ -3,8 +3,7 @@
 
 package com.lsm1998.chat.proto;
 
-public final class DataProto
-{
+public final class DataProto {
   private DataProto() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
@@ -61,9 +60,9 @@ public final class DataProto
      * 系统消息
      * </pre>
      *
-     * <code>SYSTEM_SEND_MSG = 4;</code>
+     * <code>SYSTEM_MSG = 4;</code>
      */
-    SYSTEM_SEND_MSG(4),
+    SYSTEM_MSG(4),
     /**
      * <pre>
      * 系统广播
@@ -72,6 +71,38 @@ public final class DataProto
      * <code>SYSTEM_BROADCAST_MSG = 5;</code>
      */
     SYSTEM_BROADCAST_MSG(5),
+    /**
+     * <pre>
+     * 心跳
+     * </pre>
+     *
+     * <code>PONG_MSG = 6;</code>
+     */
+    PONG_MSG(6),
+    /**
+     * <pre>
+     * 离开
+     * </pre>
+     *
+     * <code>LEAVE_MSG = 7;</code>
+     */
+    LEAVE_MSG(7),
+    /**
+     * <pre>
+     * 文件传输
+     * </pre>
+     *
+     * <code>FILE_MSG = 8;</code>
+     */
+    FILE_MSG(8),
+    /**
+     * <pre>
+     * 文件切片包
+     * </pre>
+     *
+     * <code>FILE_SLICES_MSG = 9;</code>
+     */
+    FILE_SLICES_MSG(9),
     UNRECOGNIZED(-1),
     ;
 
@@ -112,9 +143,9 @@ public final class DataProto
      * 系统消息
      * </pre>
      *
-     * <code>SYSTEM_SEND_MSG = 4;</code>
+     * <code>SYSTEM_MSG = 4;</code>
      */
-    public static final int SYSTEM_SEND_MSG_VALUE = 4;
+    public static final int SYSTEM_MSG_VALUE = 4;
     /**
      * <pre>
      * 系统广播
@@ -123,6 +154,38 @@ public final class DataProto
      * <code>SYSTEM_BROADCAST_MSG = 5;</code>
      */
     public static final int SYSTEM_BROADCAST_MSG_VALUE = 5;
+    /**
+     * <pre>
+     * 心跳
+     * </pre>
+     *
+     * <code>PONG_MSG = 6;</code>
+     */
+    public static final int PONG_MSG_VALUE = 6;
+    /**
+     * <pre>
+     * 离开
+     * </pre>
+     *
+     * <code>LEAVE_MSG = 7;</code>
+     */
+    public static final int LEAVE_MSG_VALUE = 7;
+    /**
+     * <pre>
+     * 文件传输
+     * </pre>
+     *
+     * <code>FILE_MSG = 8;</code>
+     */
+    public static final int FILE_MSG_VALUE = 8;
+    /**
+     * <pre>
+     * 文件切片包
+     * </pre>
+     *
+     * <code>FILE_SLICES_MSG = 9;</code>
+     */
+    public static final int FILE_SLICES_MSG_VALUE = 9;
 
 
     public final int getNumber() {
@@ -147,8 +210,12 @@ public final class DataProto
         case 1: return HANDSHAKE_MSG;
         case 2: return SEND_MSG;
         case 3: return BROADCAST_MSG;
-        case 4: return SYSTEM_SEND_MSG;
+        case 4: return SYSTEM_MSG;
         case 5: return SYSTEM_BROADCAST_MSG;
+        case 6: return PONG_MSG;
+        case 7: return LEAVE_MSG;
+        case 8: return FILE_MSG;
+        case 9: return FILE_SLICES_MSG;
         default: return null;
       }
     }
@@ -201,6 +268,450 @@ public final class DataProto
     // @@protoc_insertion_point(enum_scope:proto.MsgType)
   }
 
+  /**
+   * Protobuf enum {@code proto.ResultCode}
+   */
+  public enum ResultCode
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * ok
+     * </pre>
+     *
+     * <code>OK = 0;</code>
+     */
+    OK(0),
+    /**
+     * <pre>
+     * 非法请求，不予处理
+     * </pre>
+     *
+     * <code>CLIENT_FAIL = 1;</code>
+     */
+    CLIENT_FAIL(1),
+    /**
+     * <pre>
+     * 处理失败，服务器错误
+     * </pre>
+     *
+     * <code>SERVER_FAIL = 2;</code>
+     */
+    SERVER_FAIL(2),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * ok
+     * </pre>
+     *
+     * <code>OK = 0;</code>
+     */
+    public static final int OK_VALUE = 0;
+    /**
+     * <pre>
+     * 非法请求，不予处理
+     * </pre>
+     *
+     * <code>CLIENT_FAIL = 1;</code>
+     */
+    public static final int CLIENT_FAIL_VALUE = 1;
+    /**
+     * <pre>
+     * 处理失败，服务器错误
+     * </pre>
+     *
+     * <code>SERVER_FAIL = 2;</code>
+     */
+    public static final int SERVER_FAIL_VALUE = 2;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ResultCode valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ResultCode forNumber(int value) {
+      switch (value) {
+        case 0: return OK;
+        case 1: return CLIENT_FAIL;
+        case 2: return SERVER_FAIL;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ResultCode>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ResultCode> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ResultCode>() {
+            public ResultCode findValueByNumber(int number) {
+              return ResultCode.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final ResultCode[] VALUES = values();
+
+    public static ResultCode valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ResultCode(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:proto.ResultCode)
+  }
+
+  /**
+   * Protobuf enum {@code proto.SendType}
+   */
+  public enum SendType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 单聊
+     * </pre>
+     *
+     * <code>SINGLE = 0;</code>
+     */
+    SINGLE(0),
+    /**
+     * <pre>
+     * 群聊
+     * </pre>
+     *
+     * <code>GROUP = 1;</code>
+     */
+    GROUP(1),
+    /**
+     * <pre>
+     * 上线
+     * </pre>
+     *
+     * <code>ONLINE = 2;</code>
+     */
+    ONLINE(2),
+    /**
+     * <pre>
+     * 离线
+     * </pre>
+     *
+     * <code>LEAVE = 3;</code>
+     */
+    LEAVE(3),
+    /**
+     * <pre>
+     * 请求添加好友
+     * </pre>
+     *
+     * <code>ADD_FRIEND = 4;</code>
+     */
+    ADD_FRIEND(4),
+    /**
+     * <pre>
+     * 同意添加好友
+     * </pre>
+     *
+     * <code>AGREE_FRIEND = 5;</code>
+     */
+    AGREE_FRIEND(5),
+    /**
+     * <pre>
+     * 拒绝添加好友
+     * </pre>
+     *
+     * <code>REFUSE_FRIEND = 6;</code>
+     */
+    REFUSE_FRIEND(6),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 单聊
+     * </pre>
+     *
+     * <code>SINGLE = 0;</code>
+     */
+    public static final int SINGLE_VALUE = 0;
+    /**
+     * <pre>
+     * 群聊
+     * </pre>
+     *
+     * <code>GROUP = 1;</code>
+     */
+    public static final int GROUP_VALUE = 1;
+    /**
+     * <pre>
+     * 上线
+     * </pre>
+     *
+     * <code>ONLINE = 2;</code>
+     */
+    public static final int ONLINE_VALUE = 2;
+    /**
+     * <pre>
+     * 离线
+     * </pre>
+     *
+     * <code>LEAVE = 3;</code>
+     */
+    public static final int LEAVE_VALUE = 3;
+    /**
+     * <pre>
+     * 请求添加好友
+     * </pre>
+     *
+     * <code>ADD_FRIEND = 4;</code>
+     */
+    public static final int ADD_FRIEND_VALUE = 4;
+    /**
+     * <pre>
+     * 同意添加好友
+     * </pre>
+     *
+     * <code>AGREE_FRIEND = 5;</code>
+     */
+    public static final int AGREE_FRIEND_VALUE = 5;
+    /**
+     * <pre>
+     * 拒绝添加好友
+     * </pre>
+     *
+     * <code>REFUSE_FRIEND = 6;</code>
+     */
+    public static final int REFUSE_FRIEND_VALUE = 6;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SendType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SendType forNumber(int value) {
+      switch (value) {
+        case 0: return SINGLE;
+        case 1: return GROUP;
+        case 2: return ONLINE;
+        case 3: return LEAVE;
+        case 4: return ADD_FRIEND;
+        case 5: return AGREE_FRIEND;
+        case 6: return REFUSE_FRIEND;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SendType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SendType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SendType>() {
+            public SendType findValueByNumber(int number) {
+              return SendType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.getDescriptor().getEnumTypes().get(2);
+    }
+
+    private static final SendType[] VALUES = values();
+
+    public static SendType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private SendType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:proto.SendType)
+  }
+
+  /**
+   * Protobuf enum {@code proto.SystemMsgType}
+   */
+  public enum SystemMsgType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 普通推送消息
+     * </pre>
+     *
+     * <code>MSG = 0;</code>
+     */
+    MSG(0),
+    /**
+     * <pre>
+     * 强制下线
+     * </pre>
+     *
+     * <code>EXIT = 1;</code>
+     */
+    EXIT(1),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 普通推送消息
+     * </pre>
+     *
+     * <code>MSG = 0;</code>
+     */
+    public static final int MSG_VALUE = 0;
+    /**
+     * <pre>
+     * 强制下线
+     * </pre>
+     *
+     * <code>EXIT = 1;</code>
+     */
+    public static final int EXIT_VALUE = 1;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static SystemMsgType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SystemMsgType forNumber(int value) {
+      switch (value) {
+        case 0: return MSG;
+        case 1: return EXIT;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<SystemMsgType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SystemMsgType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<SystemMsgType>() {
+            public SystemMsgType findValueByNumber(int number) {
+              return SystemMsgType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.getDescriptor().getEnumTypes().get(3);
+    }
+
+    private static final SystemMsgType[] VALUES = values();
+
+    public static SystemMsgType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private SystemMsgType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:proto.SystemMsgType)
+  }
+
   public interface MsgReqOrBuilder extends
       // @@protoc_insertion_point(interface_extends:proto.MsgReq)
       com.google.protobuf.MessageOrBuilder {
@@ -215,43 +726,154 @@ public final class DataProto
     com.lsm1998.chat.proto.DataProto.MsgType getMsgType();
 
     /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    boolean hasAckReq();
-    /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    com.lsm1998.chat.proto.DataProto.AckReq getAckReq();
-    /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    com.lsm1998.chat.proto.DataProto.AckReqOrBuilder getAckReqOrBuilder();
-
-    /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     boolean hasHandShakeReq();
     /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     com.lsm1998.chat.proto.DataProto.HandShakeReq getHandShakeReq();
     /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder getHandShakeReqOrBuilder();
 
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     boolean hasSendMsgReq();
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     com.lsm1998.chat.proto.DataProto.SendMsgReq getSendMsgReq();
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder getSendMsgReqOrBuilder();
+
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    boolean hasPongReq();
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.PongReq getPongReq();
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.PongReqOrBuilder getPongReqOrBuilder();
+
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    boolean hasLeaveReq();
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.LeaveReq getLeaveReq();
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder getLeaveReqOrBuilder();
+
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    boolean hasFileReq();
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.FileReq getFileReq();
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.FileReqOrBuilder getFileReqOrBuilder();
+
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    boolean hasFileSlicesReq();
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.FileSlicesReq getFileSlicesReq();
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder getFileSlicesReqOrBuilder();
 
     public com.lsm1998.chat.proto.DataProto.MsgReq.PackCase getPackCase();
   }
@@ -307,20 +929,6 @@ public final class DataProto
               msgType_ = rawValue;
               break;
             }
-            case 18: {
-              com.lsm1998.chat.proto.DataProto.AckReq.Builder subBuilder = null;
-              if (packCase_ == 2) {
-                subBuilder = ((com.lsm1998.chat.proto.DataProto.AckReq) pack_).toBuilder();
-              }
-              pack_ =
-                  input.readMessage(com.lsm1998.chat.proto.DataProto.AckReq.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.AckReq) pack_);
-                pack_ = subBuilder.buildPartial();
-              }
-              packCase_ = 2;
-              break;
-            }
             case 26: {
               com.lsm1998.chat.proto.DataProto.HandShakeReq.Builder subBuilder = null;
               if (packCase_ == 3) {
@@ -347,6 +955,62 @@ public final class DataProto
                 pack_ = subBuilder.buildPartial();
               }
               packCase_ = 4;
+              break;
+            }
+            case 50: {
+              com.lsm1998.chat.proto.DataProto.PongReq.Builder subBuilder = null;
+              if (packCase_ == 6) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.PongReq) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.PongReq.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.PongReq) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 6;
+              break;
+            }
+            case 58: {
+              com.lsm1998.chat.proto.DataProto.LeaveReq.Builder subBuilder = null;
+              if (packCase_ == 7) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.LeaveReq) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.LeaveReq.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.LeaveReq) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 7;
+              break;
+            }
+            case 66: {
+              com.lsm1998.chat.proto.DataProto.FileReq.Builder subBuilder = null;
+              if (packCase_ == 8) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.FileReq) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.FileReq.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.FileReq) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 8;
+              break;
+            }
+            case 74: {
+              com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder subBuilder = null;
+              if (packCase_ == 9) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.FileSlicesReq.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 9;
               break;
             }
             default: {
@@ -385,9 +1049,12 @@ public final class DataProto
     private java.lang.Object pack_;
     public enum PackCase
         implements com.google.protobuf.Internal.EnumLite {
-      ACKREQ(2),
       HANDSHAKEREQ(3),
       SENDMSGREQ(4),
+      PONGREQ(6),
+      LEAVEREQ(7),
+      FILEREQ(8),
+      FILESLICESREQ(9),
       PACK_NOT_SET(0);
       private final int value;
       private PackCase(int value) {
@@ -403,9 +1070,12 @@ public final class DataProto
 
       public static PackCase forNumber(int value) {
         switch (value) {
-          case 2: return ACKREQ;
           case 3: return HANDSHAKEREQ;
           case 4: return SENDMSGREQ;
+          case 6: return PONGREQ;
+          case 7: return LEAVEREQ;
+          case 8: return FILEREQ;
+          case 9: return FILESLICESREQ;
           case 0: return PACK_NOT_SET;
           default: return null;
         }
@@ -438,40 +1108,22 @@ public final class DataProto
       return result == null ? com.lsm1998.chat.proto.DataProto.MsgType.UNRECOGNIZED : result;
     }
 
-    public static final int ACKREQ_FIELD_NUMBER = 2;
-    /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    public boolean hasAckReq() {
-      return packCase_ == 2;
-    }
-    /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    public com.lsm1998.chat.proto.DataProto.AckReq getAckReq() {
-      if (packCase_ == 2) {
-         return (com.lsm1998.chat.proto.DataProto.AckReq) pack_;
-      }
-      return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-    }
-    /**
-     * <code>.proto.AckReq ackReq = 2;</code>
-     */
-    public com.lsm1998.chat.proto.DataProto.AckReqOrBuilder getAckReqOrBuilder() {
-      if (packCase_ == 2) {
-         return (com.lsm1998.chat.proto.DataProto.AckReq) pack_;
-      }
-      return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-    }
-
     public static final int HANDSHAKEREQ_FIELD_NUMBER = 3;
     /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     public boolean hasHandShakeReq() {
       return packCase_ == 3;
     }
     /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     public com.lsm1998.chat.proto.DataProto.HandShakeReq getHandShakeReq() {
@@ -481,6 +1133,10 @@ public final class DataProto
       return com.lsm1998.chat.proto.DataProto.HandShakeReq.getDefaultInstance();
     }
     /**
+     * <pre>
+     * 握手请求
+     * </pre>
+     *
      * <code>.proto.HandShakeReq handShakeReq = 3;</code>
      */
     public com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder getHandShakeReqOrBuilder() {
@@ -492,12 +1148,20 @@ public final class DataProto
 
     public static final int SENDMSGREQ_FIELD_NUMBER = 4;
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     public boolean hasSendMsgReq() {
       return packCase_ == 4;
     }
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     public com.lsm1998.chat.proto.DataProto.SendMsgReq getSendMsgReq() {
@@ -507,6 +1171,10 @@ public final class DataProto
       return com.lsm1998.chat.proto.DataProto.SendMsgReq.getDefaultInstance();
     }
     /**
+     * <pre>
+     * 发送消息请求
+     * </pre>
+     *
      * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
      */
     public com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder getSendMsgReqOrBuilder() {
@@ -514,6 +1182,158 @@ public final class DataProto
          return (com.lsm1998.chat.proto.DataProto.SendMsgReq) pack_;
       }
       return com.lsm1998.chat.proto.DataProto.SendMsgReq.getDefaultInstance();
+    }
+
+    public static final int PONGREQ_FIELD_NUMBER = 6;
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    public boolean hasPongReq() {
+      return packCase_ == 6;
+    }
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.PongReq getPongReq() {
+      if (packCase_ == 6) {
+         return (com.lsm1998.chat.proto.DataProto.PongReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 心跳请求
+     * </pre>
+     *
+     * <code>.proto.PongReq pongReq = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.PongReqOrBuilder getPongReqOrBuilder() {
+      if (packCase_ == 6) {
+         return (com.lsm1998.chat.proto.DataProto.PongReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+    }
+
+    public static final int LEAVEREQ_FIELD_NUMBER = 7;
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    public boolean hasLeaveReq() {
+      return packCase_ == 7;
+    }
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.LeaveReq getLeaveReq() {
+      if (packCase_ == 7) {
+         return (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 离开请求
+     * </pre>
+     *
+     * <code>.proto.LeaveReq leaveReq = 7;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder getLeaveReqOrBuilder() {
+      if (packCase_ == 7) {
+         return (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+    }
+
+    public static final int FILEREQ_FIELD_NUMBER = 8;
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    public boolean hasFileReq() {
+      return packCase_ == 8;
+    }
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.FileReq getFileReq() {
+      if (packCase_ == 8) {
+         return (com.lsm1998.chat.proto.DataProto.FileReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 文件请求
+     * </pre>
+     *
+     * <code>.proto.FileReq fileReq = 8;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.FileReqOrBuilder getFileReqOrBuilder() {
+      if (packCase_ == 8) {
+         return (com.lsm1998.chat.proto.DataProto.FileReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+    }
+
+    public static final int FILESLICESREQ_FIELD_NUMBER = 9;
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    public boolean hasFileSlicesReq() {
+      return packCase_ == 9;
+    }
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.FileSlicesReq getFileSlicesReq() {
+      if (packCase_ == 9) {
+         return (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 文件切片包请求
+     * </pre>
+     *
+     * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder getFileSlicesReqOrBuilder() {
+      if (packCase_ == 9) {
+         return (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -533,14 +1353,23 @@ public final class DataProto
       if (msgType_ != com.lsm1998.chat.proto.DataProto.MsgType.ACK_MSG.getNumber()) {
         output.writeEnum(1, msgType_);
       }
-      if (packCase_ == 2) {
-        output.writeMessage(2, (com.lsm1998.chat.proto.DataProto.AckReq) pack_);
-      }
       if (packCase_ == 3) {
         output.writeMessage(3, (com.lsm1998.chat.proto.DataProto.HandShakeReq) pack_);
       }
       if (packCase_ == 4) {
         output.writeMessage(4, (com.lsm1998.chat.proto.DataProto.SendMsgReq) pack_);
+      }
+      if (packCase_ == 6) {
+        output.writeMessage(6, (com.lsm1998.chat.proto.DataProto.PongReq) pack_);
+      }
+      if (packCase_ == 7) {
+        output.writeMessage(7, (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_);
+      }
+      if (packCase_ == 8) {
+        output.writeMessage(8, (com.lsm1998.chat.proto.DataProto.FileReq) pack_);
+      }
+      if (packCase_ == 9) {
+        output.writeMessage(9, (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_);
       }
       unknownFields.writeTo(output);
     }
@@ -555,10 +1384,6 @@ public final class DataProto
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, msgType_);
       }
-      if (packCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (com.lsm1998.chat.proto.DataProto.AckReq) pack_);
-      }
       if (packCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (com.lsm1998.chat.proto.DataProto.HandShakeReq) pack_);
@@ -566,6 +1391,22 @@ public final class DataProto
       if (packCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, (com.lsm1998.chat.proto.DataProto.SendMsgReq) pack_);
+      }
+      if (packCase_ == 6) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, (com.lsm1998.chat.proto.DataProto.PongReq) pack_);
+      }
+      if (packCase_ == 7) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_);
+      }
+      if (packCase_ == 8) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, (com.lsm1998.chat.proto.DataProto.FileReq) pack_);
+      }
+      if (packCase_ == 9) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -585,10 +1426,6 @@ public final class DataProto
       if (msgType_ != other.msgType_) return false;
       if (!getPackCase().equals(other.getPackCase())) return false;
       switch (packCase_) {
-        case 2:
-          if (!getAckReq()
-              .equals(other.getAckReq())) return false;
-          break;
         case 3:
           if (!getHandShakeReq()
               .equals(other.getHandShakeReq())) return false;
@@ -596,6 +1433,22 @@ public final class DataProto
         case 4:
           if (!getSendMsgReq()
               .equals(other.getSendMsgReq())) return false;
+          break;
+        case 6:
+          if (!getPongReq()
+              .equals(other.getPongReq())) return false;
+          break;
+        case 7:
+          if (!getLeaveReq()
+              .equals(other.getLeaveReq())) return false;
+          break;
+        case 8:
+          if (!getFileReq()
+              .equals(other.getFileReq())) return false;
+          break;
+        case 9:
+          if (!getFileSlicesReq()
+              .equals(other.getFileSlicesReq())) return false;
           break;
         case 0:
         default:
@@ -614,10 +1467,6 @@ public final class DataProto
       hash = (37 * hash) + MSGTYPE_FIELD_NUMBER;
       hash = (53 * hash) + msgType_;
       switch (packCase_) {
-        case 2:
-          hash = (37 * hash) + ACKREQ_FIELD_NUMBER;
-          hash = (53 * hash) + getAckReq().hashCode();
-          break;
         case 3:
           hash = (37 * hash) + HANDSHAKEREQ_FIELD_NUMBER;
           hash = (53 * hash) + getHandShakeReq().hashCode();
@@ -625,6 +1474,22 @@ public final class DataProto
         case 4:
           hash = (37 * hash) + SENDMSGREQ_FIELD_NUMBER;
           hash = (53 * hash) + getSendMsgReq().hashCode();
+          break;
+        case 6:
+          hash = (37 * hash) + PONGREQ_FIELD_NUMBER;
+          hash = (53 * hash) + getPongReq().hashCode();
+          break;
+        case 7:
+          hash = (37 * hash) + LEAVEREQ_FIELD_NUMBER;
+          hash = (53 * hash) + getLeaveReq().hashCode();
+          break;
+        case 8:
+          hash = (37 * hash) + FILEREQ_FIELD_NUMBER;
+          hash = (53 * hash) + getFileReq().hashCode();
+          break;
+        case 9:
+          hash = (37 * hash) + FILESLICESREQ_FIELD_NUMBER;
+          hash = (53 * hash) + getFileSlicesReq().hashCode();
           break;
         case 0:
         default:
@@ -720,7 +1585,7 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -750,7 +1615,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -793,13 +1658,6 @@ public final class DataProto
       public com.lsm1998.chat.proto.DataProto.MsgReq buildPartial() {
         com.lsm1998.chat.proto.DataProto.MsgReq result = new com.lsm1998.chat.proto.DataProto.MsgReq(this);
         result.msgType_ = msgType_;
-        if (packCase_ == 2) {
-          if (ackReqBuilder_ == null) {
-            result.pack_ = pack_;
-          } else {
-            result.pack_ = ackReqBuilder_.build();
-          }
-        }
         if (packCase_ == 3) {
           if (handShakeReqBuilder_ == null) {
             result.pack_ = pack_;
@@ -812,6 +1670,34 @@ public final class DataProto
             result.pack_ = pack_;
           } else {
             result.pack_ = sendMsgReqBuilder_.build();
+          }
+        }
+        if (packCase_ == 6) {
+          if (pongReqBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = pongReqBuilder_.build();
+          }
+        }
+        if (packCase_ == 7) {
+          if (leaveReqBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = leaveReqBuilder_.build();
+          }
+        }
+        if (packCase_ == 8) {
+          if (fileReqBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = fileReqBuilder_.build();
+          }
+        }
+        if (packCase_ == 9) {
+          if (fileSlicesReqBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = fileSlicesReqBuilder_.build();
           }
         }
         result.packCase_ = packCase_;
@@ -867,16 +1753,28 @@ public final class DataProto
           setMsgTypeValue(other.getMsgTypeValue());
         }
         switch (other.getPackCase()) {
-          case ACKREQ: {
-            mergeAckReq(other.getAckReq());
-            break;
-          }
           case HANDSHAKEREQ: {
             mergeHandShakeReq(other.getHandShakeReq());
             break;
           }
           case SENDMSGREQ: {
             mergeSendMsgReq(other.getSendMsgReq());
+            break;
+          }
+          case PONGREQ: {
+            mergePongReq(other.getPongReq());
+            break;
+          }
+          case LEAVEREQ: {
+            mergeLeaveReq(other.getLeaveReq());
+            break;
+          }
+          case FILEREQ: {
+            mergeFileReq(other.getFileReq());
+            break;
+          }
+          case FILESLICESREQ: {
+            mergeFileSlicesReq(other.getFileSlicesReq());
             break;
           }
           case PACK_NOT_SET: {
@@ -957,7 +1855,7 @@ public final class DataProto
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         msgType_ = value.getNumber();
         onChanged();
         return this;
@@ -966,157 +1864,29 @@ public final class DataProto
        * <code>.proto.MsgType msgType = 1;</code>
        */
       public Builder clearMsgType() {
-
+        
         msgType_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          AckReq, AckReq.Builder, AckReqOrBuilder> ackReqBuilder_;
+          com.lsm1998.chat.proto.DataProto.HandShakeReq, com.lsm1998.chat.proto.DataProto.HandShakeReq.Builder, com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder> handShakeReqBuilder_;
       /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public boolean hasAckReq() {
-        return packCase_ == 2;
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public com.lsm1998.chat.proto.DataProto.AckReq getAckReq() {
-        if (ackReqBuilder_ == null) {
-          if (packCase_ == 2) {
-            return (com.lsm1998.chat.proto.DataProto.AckReq) pack_;
-          }
-          return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-        } else {
-          if (packCase_ == 2) {
-            return ackReqBuilder_.getMessage();
-          }
-          return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public Builder setAckReq(com.lsm1998.chat.proto.DataProto.AckReq value) {
-        if (ackReqBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          pack_ = value;
-          onChanged();
-        } else {
-          ackReqBuilder_.setMessage(value);
-        }
-        packCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public Builder setAckReq(
-          com.lsm1998.chat.proto.DataProto.AckReq.Builder builderForValue) {
-        if (ackReqBuilder_ == null) {
-          pack_ = builderForValue.build();
-          onChanged();
-        } else {
-          ackReqBuilder_.setMessage(builderForValue.build());
-        }
-        packCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public Builder mergeAckReq(com.lsm1998.chat.proto.DataProto.AckReq value) {
-        if (ackReqBuilder_ == null) {
-          if (packCase_ == 2 &&
-              pack_ != com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance()) {
-            pack_ = com.lsm1998.chat.proto.DataProto.AckReq.newBuilder((com.lsm1998.chat.proto.DataProto.AckReq) pack_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            pack_ = value;
-          }
-          onChanged();
-        } else {
-          if (packCase_ == 2) {
-            ackReqBuilder_.mergeFrom(value);
-          }
-          ackReqBuilder_.setMessage(value);
-        }
-        packCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public Builder clearAckReq() {
-        if (ackReqBuilder_ == null) {
-          if (packCase_ == 2) {
-            packCase_ = 0;
-            pack_ = null;
-            onChanged();
-          }
-        } else {
-          if (packCase_ == 2) {
-            packCase_ = 0;
-            pack_ = null;
-          }
-          ackReqBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public com.lsm1998.chat.proto.DataProto.AckReq.Builder getAckReqBuilder() {
-        return getAckReqFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      public com.lsm1998.chat.proto.DataProto.AckReqOrBuilder getAckReqOrBuilder() {
-        if ((packCase_ == 2) && (ackReqBuilder_ != null)) {
-          return ackReqBuilder_.getMessageOrBuilder();
-        } else {
-          if (packCase_ == 2) {
-            return (com.lsm1998.chat.proto.DataProto.AckReq) pack_;
-          }
-          return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>.proto.AckReq ackReq = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          AckReq, AckReq.Builder, AckReqOrBuilder>
-          getAckReqFieldBuilder() {
-        if (ackReqBuilder_ == null) {
-          if (!(packCase_ == 2)) {
-            pack_ = com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-          }
-          ackReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              AckReq, AckReq.Builder, AckReqOrBuilder>(
-                  (com.lsm1998.chat.proto.DataProto.AckReq) pack_,
-                  getParentForChildren(),
-                  isClean());
-          pack_ = null;
-        }
-        packCase_ = 2;
-        onChanged();;
-        return ackReqBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilderV3<
-          HandShakeReq, HandShakeReq.Builder, HandShakeReqOrBuilder> handShakeReqBuilder_;
-      /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public boolean hasHandShakeReq() {
         return packCase_ == 3;
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeReq getHandShakeReq() {
@@ -1133,6 +1903,10 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public Builder setHandShakeReq(com.lsm1998.chat.proto.DataProto.HandShakeReq value) {
@@ -1149,6 +1923,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public Builder setHandShakeReq(
@@ -1163,6 +1941,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public Builder mergeHandShakeReq(com.lsm1998.chat.proto.DataProto.HandShakeReq value) {
@@ -1185,6 +1967,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public Builder clearHandShakeReq() {
@@ -1204,12 +1990,20 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeReq.Builder getHandShakeReqBuilder() {
         return getHandShakeReqFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder getHandShakeReqOrBuilder() {
@@ -1223,17 +2017,21 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 握手请求
+       * </pre>
+       *
        * <code>.proto.HandShakeReq handShakeReq = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          HandShakeReq, HandShakeReq.Builder, HandShakeReqOrBuilder>
+          com.lsm1998.chat.proto.DataProto.HandShakeReq, com.lsm1998.chat.proto.DataProto.HandShakeReq.Builder, com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder> 
           getHandShakeReqFieldBuilder() {
         if (handShakeReqBuilder_ == null) {
           if (!(packCase_ == 3)) {
             pack_ = com.lsm1998.chat.proto.DataProto.HandShakeReq.getDefaultInstance();
           }
           handShakeReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              HandShakeReq, HandShakeReq.Builder, HandShakeReqOrBuilder>(
+              com.lsm1998.chat.proto.DataProto.HandShakeReq, com.lsm1998.chat.proto.DataProto.HandShakeReq.Builder, com.lsm1998.chat.proto.DataProto.HandShakeReqOrBuilder>(
                   (com.lsm1998.chat.proto.DataProto.HandShakeReq) pack_,
                   getParentForChildren(),
                   isClean());
@@ -1245,14 +2043,22 @@ public final class DataProto
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          SendMsgReq, SendMsgReq.Builder, SendMsgReqOrBuilder> sendMsgReqBuilder_;
+          com.lsm1998.chat.proto.DataProto.SendMsgReq, com.lsm1998.chat.proto.DataProto.SendMsgReq.Builder, com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder> sendMsgReqBuilder_;
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public boolean hasSendMsgReq() {
         return packCase_ == 4;
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgReq getSendMsgReq() {
@@ -1269,6 +2075,10 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public Builder setSendMsgReq(com.lsm1998.chat.proto.DataProto.SendMsgReq value) {
@@ -1285,6 +2095,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public Builder setSendMsgReq(
@@ -1299,6 +2113,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public Builder mergeSendMsgReq(com.lsm1998.chat.proto.DataProto.SendMsgReq value) {
@@ -1321,6 +2139,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public Builder clearSendMsgReq() {
@@ -1340,12 +2162,20 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgReq.Builder getSendMsgReqBuilder() {
         return getSendMsgReqFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder getSendMsgReqOrBuilder() {
@@ -1359,17 +2189,21 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 发送消息请求
+       * </pre>
+       *
        * <code>.proto.SendMsgReq sendMsgReq = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          SendMsgReq, SendMsgReq.Builder, SendMsgReqOrBuilder>
+          com.lsm1998.chat.proto.DataProto.SendMsgReq, com.lsm1998.chat.proto.DataProto.SendMsgReq.Builder, com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder> 
           getSendMsgReqFieldBuilder() {
         if (sendMsgReqBuilder_ == null) {
           if (!(packCase_ == 4)) {
             pack_ = com.lsm1998.chat.proto.DataProto.SendMsgReq.getDefaultInstance();
           }
           sendMsgReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              SendMsgReq, SendMsgReq.Builder, SendMsgReqOrBuilder>(
+              com.lsm1998.chat.proto.DataProto.SendMsgReq, com.lsm1998.chat.proto.DataProto.SendMsgReq.Builder, com.lsm1998.chat.proto.DataProto.SendMsgReqOrBuilder>(
                   (com.lsm1998.chat.proto.DataProto.SendMsgReq) pack_,
                   getParentForChildren(),
                   isClean());
@@ -1378,6 +2212,694 @@ public final class DataProto
         packCase_ = 4;
         onChanged();;
         return sendMsgReqBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.PongReq, com.lsm1998.chat.proto.DataProto.PongReq.Builder, com.lsm1998.chat.proto.DataProto.PongReqOrBuilder> pongReqBuilder_;
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public boolean hasPongReq() {
+        return packCase_ == 6;
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.PongReq getPongReq() {
+        if (pongReqBuilder_ == null) {
+          if (packCase_ == 6) {
+            return (com.lsm1998.chat.proto.DataProto.PongReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+        } else {
+          if (packCase_ == 6) {
+            return pongReqBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public Builder setPongReq(com.lsm1998.chat.proto.DataProto.PongReq value) {
+        if (pongReqBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          pongReqBuilder_.setMessage(value);
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public Builder setPongReq(
+          com.lsm1998.chat.proto.DataProto.PongReq.Builder builderForValue) {
+        if (pongReqBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          pongReqBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public Builder mergePongReq(com.lsm1998.chat.proto.DataProto.PongReq value) {
+        if (pongReqBuilder_ == null) {
+          if (packCase_ == 6 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.PongReq.newBuilder((com.lsm1998.chat.proto.DataProto.PongReq) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 6) {
+            pongReqBuilder_.mergeFrom(value);
+          }
+          pongReqBuilder_.setMessage(value);
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public Builder clearPongReq() {
+        if (pongReqBuilder_ == null) {
+          if (packCase_ == 6) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 6) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          pongReqBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.PongReq.Builder getPongReqBuilder() {
+        return getPongReqFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.PongReqOrBuilder getPongReqOrBuilder() {
+        if ((packCase_ == 6) && (pongReqBuilder_ != null)) {
+          return pongReqBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 6) {
+            return (com.lsm1998.chat.proto.DataProto.PongReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 心跳请求
+       * </pre>
+       *
+       * <code>.proto.PongReq pongReq = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.PongReq, com.lsm1998.chat.proto.DataProto.PongReq.Builder, com.lsm1998.chat.proto.DataProto.PongReqOrBuilder> 
+          getPongReqFieldBuilder() {
+        if (pongReqBuilder_ == null) {
+          if (!(packCase_ == 6)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+          }
+          pongReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.PongReq, com.lsm1998.chat.proto.DataProto.PongReq.Builder, com.lsm1998.chat.proto.DataProto.PongReqOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.PongReq) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 6;
+        onChanged();;
+        return pongReqBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.LeaveReq, com.lsm1998.chat.proto.DataProto.LeaveReq.Builder, com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder> leaveReqBuilder_;
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public boolean hasLeaveReq() {
+        return packCase_ == 7;
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.LeaveReq getLeaveReq() {
+        if (leaveReqBuilder_ == null) {
+          if (packCase_ == 7) {
+            return (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+        } else {
+          if (packCase_ == 7) {
+            return leaveReqBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public Builder setLeaveReq(com.lsm1998.chat.proto.DataProto.LeaveReq value) {
+        if (leaveReqBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          leaveReqBuilder_.setMessage(value);
+        }
+        packCase_ = 7;
+        return this;
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public Builder setLeaveReq(
+          com.lsm1998.chat.proto.DataProto.LeaveReq.Builder builderForValue) {
+        if (leaveReqBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          leaveReqBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 7;
+        return this;
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public Builder mergeLeaveReq(com.lsm1998.chat.proto.DataProto.LeaveReq value) {
+        if (leaveReqBuilder_ == null) {
+          if (packCase_ == 7 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.LeaveReq.newBuilder((com.lsm1998.chat.proto.DataProto.LeaveReq) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 7) {
+            leaveReqBuilder_.mergeFrom(value);
+          }
+          leaveReqBuilder_.setMessage(value);
+        }
+        packCase_ = 7;
+        return this;
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public Builder clearLeaveReq() {
+        if (leaveReqBuilder_ == null) {
+          if (packCase_ == 7) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 7) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          leaveReqBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.LeaveReq.Builder getLeaveReqBuilder() {
+        return getLeaveReqFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder getLeaveReqOrBuilder() {
+        if ((packCase_ == 7) && (leaveReqBuilder_ != null)) {
+          return leaveReqBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 7) {
+            return (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 离开请求
+       * </pre>
+       *
+       * <code>.proto.LeaveReq leaveReq = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.LeaveReq, com.lsm1998.chat.proto.DataProto.LeaveReq.Builder, com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder> 
+          getLeaveReqFieldBuilder() {
+        if (leaveReqBuilder_ == null) {
+          if (!(packCase_ == 7)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+          }
+          leaveReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.LeaveReq, com.lsm1998.chat.proto.DataProto.LeaveReq.Builder, com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.LeaveReq) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 7;
+        onChanged();;
+        return leaveReqBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.FileReq, com.lsm1998.chat.proto.DataProto.FileReq.Builder, com.lsm1998.chat.proto.DataProto.FileReqOrBuilder> fileReqBuilder_;
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public boolean hasFileReq() {
+        return packCase_ == 8;
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileReq getFileReq() {
+        if (fileReqBuilder_ == null) {
+          if (packCase_ == 8) {
+            return (com.lsm1998.chat.proto.DataProto.FileReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+        } else {
+          if (packCase_ == 8) {
+            return fileReqBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public Builder setFileReq(com.lsm1998.chat.proto.DataProto.FileReq value) {
+        if (fileReqBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          fileReqBuilder_.setMessage(value);
+        }
+        packCase_ = 8;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public Builder setFileReq(
+          com.lsm1998.chat.proto.DataProto.FileReq.Builder builderForValue) {
+        if (fileReqBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          fileReqBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 8;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public Builder mergeFileReq(com.lsm1998.chat.proto.DataProto.FileReq value) {
+        if (fileReqBuilder_ == null) {
+          if (packCase_ == 8 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.FileReq.newBuilder((com.lsm1998.chat.proto.DataProto.FileReq) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 8) {
+            fileReqBuilder_.mergeFrom(value);
+          }
+          fileReqBuilder_.setMessage(value);
+        }
+        packCase_ = 8;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public Builder clearFileReq() {
+        if (fileReqBuilder_ == null) {
+          if (packCase_ == 8) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 8) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          fileReqBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileReq.Builder getFileReqBuilder() {
+        return getFileReqFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileReqOrBuilder getFileReqOrBuilder() {
+        if ((packCase_ == 8) && (fileReqBuilder_ != null)) {
+          return fileReqBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 8) {
+            return (com.lsm1998.chat.proto.DataProto.FileReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 文件请求
+       * </pre>
+       *
+       * <code>.proto.FileReq fileReq = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.FileReq, com.lsm1998.chat.proto.DataProto.FileReq.Builder, com.lsm1998.chat.proto.DataProto.FileReqOrBuilder> 
+          getFileReqFieldBuilder() {
+        if (fileReqBuilder_ == null) {
+          if (!(packCase_ == 8)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+          }
+          fileReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.FileReq, com.lsm1998.chat.proto.DataProto.FileReq.Builder, com.lsm1998.chat.proto.DataProto.FileReqOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.FileReq) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 8;
+        onChanged();;
+        return fileReqBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.FileSlicesReq, com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder, com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder> fileSlicesReqBuilder_;
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public boolean hasFileSlicesReq() {
+        return packCase_ == 9;
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReq getFileSlicesReq() {
+        if (fileSlicesReqBuilder_ == null) {
+          if (packCase_ == 9) {
+            return (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+        } else {
+          if (packCase_ == 9) {
+            return fileSlicesReqBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public Builder setFileSlicesReq(com.lsm1998.chat.proto.DataProto.FileSlicesReq value) {
+        if (fileSlicesReqBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          fileSlicesReqBuilder_.setMessage(value);
+        }
+        packCase_ = 9;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public Builder setFileSlicesReq(
+          com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder builderForValue) {
+        if (fileSlicesReqBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          fileSlicesReqBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 9;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public Builder mergeFileSlicesReq(com.lsm1998.chat.proto.DataProto.FileSlicesReq value) {
+        if (fileSlicesReqBuilder_ == null) {
+          if (packCase_ == 9 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.FileSlicesReq.newBuilder((com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 9) {
+            fileSlicesReqBuilder_.mergeFrom(value);
+          }
+          fileSlicesReqBuilder_.setMessage(value);
+        }
+        packCase_ = 9;
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public Builder clearFileSlicesReq() {
+        if (fileSlicesReqBuilder_ == null) {
+          if (packCase_ == 9) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 9) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          fileSlicesReqBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder getFileSlicesReqBuilder() {
+        return getFileSlicesReqFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder getFileSlicesReqOrBuilder() {
+        if ((packCase_ == 9) && (fileSlicesReqBuilder_ != null)) {
+          return fileSlicesReqBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 9) {
+            return (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 文件切片包请求
+       * </pre>
+       *
+       * <code>.proto.FileSlicesReq fileSlicesReq = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.FileSlicesReq, com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder, com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder> 
+          getFileSlicesReqFieldBuilder() {
+        if (fileSlicesReqBuilder_ == null) {
+          if (!(packCase_ == 9)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+          }
+          fileSlicesReqBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.FileSlicesReq, com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder, com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.FileSlicesReq) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 9;
+        onChanged();;
+        return fileSlicesReqBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1446,43 +2968,129 @@ public final class DataProto
     com.lsm1998.chat.proto.DataProto.MsgType getMsgType();
 
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     boolean hasAckRsp();
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     com.lsm1998.chat.proto.DataProto.AckRsp getAckRsp();
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     com.lsm1998.chat.proto.DataProto.AckRspOrBuilder getAckRspOrBuilder();
 
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     boolean hasHandShakeRsp();
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     com.lsm1998.chat.proto.DataProto.HandShakeRsp getHandShakeRsp();
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder getHandShakeRspOrBuilder();
 
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     boolean hasSendMsgRsp();
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     com.lsm1998.chat.proto.DataProto.SendMsgRsp getSendMsgRsp();
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder getSendMsgRspOrBuilder();
+
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    boolean hasBroadcastMsgRsp();
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getBroadcastMsgRsp();
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder getBroadcastMsgRspOrBuilder();
+
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    boolean hasSystemMsgRsp();
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SystemMsgRsp getSystemMsgRsp();
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder getSystemMsgRspOrBuilder();
 
     public com.lsm1998.chat.proto.DataProto.MsgRsp.PackCase getPackCase();
   }
@@ -1580,6 +3188,34 @@ public final class DataProto
               packCase_ = 4;
               break;
             }
+            case 42: {
+              com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder subBuilder = null;
+              if (packCase_ == 5) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 5;
+              break;
+            }
+            case 50: {
+              com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder subBuilder = null;
+              if (packCase_ == 6) {
+                subBuilder = ((com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_).toBuilder();
+              }
+              pack_ =
+                  input.readMessage(com.lsm1998.chat.proto.DataProto.SystemMsgRsp.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_);
+                pack_ = subBuilder.buildPartial();
+              }
+              packCase_ = 6;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -1619,6 +3255,8 @@ public final class DataProto
       ACKRSP(2),
       HANDSHAKERSP(3),
       SENDMSGRSP(4),
+      BROADCASTMSGRSP(5),
+      SYSTEMMSGRSP(6),
       PACK_NOT_SET(0);
       private final int value;
       private PackCase(int value) {
@@ -1637,6 +3275,8 @@ public final class DataProto
           case 2: return ACKRSP;
           case 3: return HANDSHAKERSP;
           case 4: return SENDMSGRSP;
+          case 5: return BROADCASTMSGRSP;
+          case 6: return SYSTEMMSGRSP;
           case 0: return PACK_NOT_SET;
           default: return null;
         }
@@ -1671,12 +3311,20 @@ public final class DataProto
 
     public static final int ACKRSP_FIELD_NUMBER = 2;
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     public boolean hasAckRsp() {
       return packCase_ == 2;
     }
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     public com.lsm1998.chat.proto.DataProto.AckRsp getAckRsp() {
@@ -1686,6 +3334,10 @@ public final class DataProto
       return com.lsm1998.chat.proto.DataProto.AckRsp.getDefaultInstance();
     }
     /**
+     * <pre>
+     * ACK确认
+     * </pre>
+     *
      * <code>.proto.AckRsp ackRsp = 2;</code>
      */
     public com.lsm1998.chat.proto.DataProto.AckRspOrBuilder getAckRspOrBuilder() {
@@ -1697,12 +3349,20 @@ public final class DataProto
 
     public static final int HANDSHAKERSP_FIELD_NUMBER = 3;
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     public boolean hasHandShakeRsp() {
       return packCase_ == 3;
     }
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     public com.lsm1998.chat.proto.DataProto.HandShakeRsp getHandShakeRsp() {
@@ -1712,6 +3372,10 @@ public final class DataProto
       return com.lsm1998.chat.proto.DataProto.HandShakeRsp.getDefaultInstance();
     }
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
      */
     public com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder getHandShakeRspOrBuilder() {
@@ -1723,12 +3387,20 @@ public final class DataProto
 
     public static final int SENDMSGRSP_FIELD_NUMBER = 4;
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     public boolean hasSendMsgRsp() {
       return packCase_ == 4;
     }
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     public com.lsm1998.chat.proto.DataProto.SendMsgRsp getSendMsgRsp() {
@@ -1738,6 +3410,10 @@ public final class DataProto
       return com.lsm1998.chat.proto.DataProto.SendMsgRsp.getDefaultInstance();
     }
     /**
+     * <pre>
+     * 收到消息
+     * </pre>
+     *
      * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
      */
     public com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder getSendMsgRspOrBuilder() {
@@ -1745,6 +3421,82 @@ public final class DataProto
          return (com.lsm1998.chat.proto.DataProto.SendMsgRsp) pack_;
       }
       return com.lsm1998.chat.proto.DataProto.SendMsgRsp.getDefaultInstance();
+    }
+
+    public static final int BROADCASTMSGRSP_FIELD_NUMBER = 5;
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    public boolean hasBroadcastMsgRsp() {
+      return packCase_ == 5;
+    }
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getBroadcastMsgRsp() {
+      if (packCase_ == 5) {
+         return (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 广播消息
+     * </pre>
+     *
+     * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder getBroadcastMsgRspOrBuilder() {
+      if (packCase_ == 5) {
+         return (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+    }
+
+    public static final int SYSTEMMSGRSP_FIELD_NUMBER = 6;
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    public boolean hasSystemMsgRsp() {
+      return packCase_ == 6;
+    }
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SystemMsgRsp getSystemMsgRsp() {
+      if (packCase_ == 6) {
+         return (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+    }
+    /**
+     * <pre>
+     * 系统通知
+     * </pre>
+     *
+     * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder getSystemMsgRspOrBuilder() {
+      if (packCase_ == 6) {
+         return (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_;
+      }
+      return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1773,6 +3525,12 @@ public final class DataProto
       if (packCase_ == 4) {
         output.writeMessage(4, (com.lsm1998.chat.proto.DataProto.SendMsgRsp) pack_);
       }
+      if (packCase_ == 5) {
+        output.writeMessage(5, (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_);
+      }
+      if (packCase_ == 6) {
+        output.writeMessage(6, (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -1797,6 +3555,14 @@ public final class DataProto
       if (packCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, (com.lsm1998.chat.proto.DataProto.SendMsgRsp) pack_);
+      }
+      if (packCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_);
+      }
+      if (packCase_ == 6) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1828,6 +3594,14 @@ public final class DataProto
           if (!getSendMsgRsp()
               .equals(other.getSendMsgRsp())) return false;
           break;
+        case 5:
+          if (!getBroadcastMsgRsp()
+              .equals(other.getBroadcastMsgRsp())) return false;
+          break;
+        case 6:
+          if (!getSystemMsgRsp()
+              .equals(other.getSystemMsgRsp())) return false;
+          break;
         case 0:
         default:
       }
@@ -1856,6 +3630,14 @@ public final class DataProto
         case 4:
           hash = (37 * hash) + SENDMSGRSP_FIELD_NUMBER;
           hash = (53 * hash) + getSendMsgRsp().hashCode();
+          break;
+        case 5:
+          hash = (37 * hash) + BROADCASTMSGRSP_FIELD_NUMBER;
+          hash = (53 * hash) + getBroadcastMsgRsp().hashCode();
+          break;
+        case 6:
+          hash = (37 * hash) + SYSTEMMSGRSP_FIELD_NUMBER;
+          hash = (53 * hash) + getSystemMsgRsp().hashCode();
           break;
         case 0:
         default:
@@ -1951,7 +3733,7 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1981,7 +3763,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2043,6 +3825,20 @@ public final class DataProto
             result.pack_ = pack_;
           } else {
             result.pack_ = sendMsgRspBuilder_.build();
+          }
+        }
+        if (packCase_ == 5) {
+          if (broadcastMsgRspBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = broadcastMsgRspBuilder_.build();
+          }
+        }
+        if (packCase_ == 6) {
+          if (systemMsgRspBuilder_ == null) {
+            result.pack_ = pack_;
+          } else {
+            result.pack_ = systemMsgRspBuilder_.build();
           }
         }
         result.packCase_ = packCase_;
@@ -2108,6 +3904,14 @@ public final class DataProto
           }
           case SENDMSGRSP: {
             mergeSendMsgRsp(other.getSendMsgRsp());
+            break;
+          }
+          case BROADCASTMSGRSP: {
+            mergeBroadcastMsgRsp(other.getBroadcastMsgRsp());
+            break;
+          }
+          case SYSTEMMSGRSP: {
+            mergeSystemMsgRsp(other.getSystemMsgRsp());
             break;
           }
           case PACK_NOT_SET: {
@@ -2188,7 +3992,7 @@ public final class DataProto
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         msgType_ = value.getNumber();
         onChanged();
         return this;
@@ -2197,21 +4001,29 @@ public final class DataProto
        * <code>.proto.MsgType msgType = 1;</code>
        */
       public Builder clearMsgType() {
-
+        
         msgType_ = 0;
         onChanged();
         return this;
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          AckRsp, AckRsp.Builder, AckRspOrBuilder> ackRspBuilder_;
+          com.lsm1998.chat.proto.DataProto.AckRsp, com.lsm1998.chat.proto.DataProto.AckRsp.Builder, com.lsm1998.chat.proto.DataProto.AckRspOrBuilder> ackRspBuilder_;
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public boolean hasAckRsp() {
         return packCase_ == 2;
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public com.lsm1998.chat.proto.DataProto.AckRsp getAckRsp() {
@@ -2228,6 +4040,10 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public Builder setAckRsp(com.lsm1998.chat.proto.DataProto.AckRsp value) {
@@ -2244,6 +4060,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public Builder setAckRsp(
@@ -2258,6 +4078,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public Builder mergeAckRsp(com.lsm1998.chat.proto.DataProto.AckRsp value) {
@@ -2280,6 +4104,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public Builder clearAckRsp() {
@@ -2299,12 +4127,20 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public com.lsm1998.chat.proto.DataProto.AckRsp.Builder getAckRspBuilder() {
         return getAckRspFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       public com.lsm1998.chat.proto.DataProto.AckRspOrBuilder getAckRspOrBuilder() {
@@ -2318,17 +4154,21 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * ACK确认
+       * </pre>
+       *
        * <code>.proto.AckRsp ackRsp = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          AckRsp, AckRsp.Builder, AckRspOrBuilder>
+          com.lsm1998.chat.proto.DataProto.AckRsp, com.lsm1998.chat.proto.DataProto.AckRsp.Builder, com.lsm1998.chat.proto.DataProto.AckRspOrBuilder> 
           getAckRspFieldBuilder() {
         if (ackRspBuilder_ == null) {
           if (!(packCase_ == 2)) {
             pack_ = com.lsm1998.chat.proto.DataProto.AckRsp.getDefaultInstance();
           }
           ackRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              AckRsp, AckRsp.Builder, AckRspOrBuilder>(
+              com.lsm1998.chat.proto.DataProto.AckRsp, com.lsm1998.chat.proto.DataProto.AckRsp.Builder, com.lsm1998.chat.proto.DataProto.AckRspOrBuilder>(
                   (com.lsm1998.chat.proto.DataProto.AckRsp) pack_,
                   getParentForChildren(),
                   isClean());
@@ -2340,14 +4180,22 @@ public final class DataProto
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          HandShakeRsp, HandShakeRsp.Builder, HandShakeRspOrBuilder> handShakeRspBuilder_;
+          com.lsm1998.chat.proto.DataProto.HandShakeRsp, com.lsm1998.chat.proto.DataProto.HandShakeRsp.Builder, com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder> handShakeRspBuilder_;
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public boolean hasHandShakeRsp() {
         return packCase_ == 3;
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeRsp getHandShakeRsp() {
@@ -2364,6 +4212,10 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public Builder setHandShakeRsp(com.lsm1998.chat.proto.DataProto.HandShakeRsp value) {
@@ -2380,6 +4232,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public Builder setHandShakeRsp(
@@ -2394,6 +4250,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public Builder mergeHandShakeRsp(com.lsm1998.chat.proto.DataProto.HandShakeRsp value) {
@@ -2416,6 +4276,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public Builder clearHandShakeRsp() {
@@ -2435,12 +4299,20 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeRsp.Builder getHandShakeRspBuilder() {
         return getHandShakeRspFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       public com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder getHandShakeRspOrBuilder() {
@@ -2454,17 +4326,21 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 握手回复
+       * </pre>
+       *
        * <code>.proto.HandShakeRsp handShakeRsp = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          HandShakeRsp, HandShakeRsp.Builder, HandShakeRspOrBuilder>
+          com.lsm1998.chat.proto.DataProto.HandShakeRsp, com.lsm1998.chat.proto.DataProto.HandShakeRsp.Builder, com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder> 
           getHandShakeRspFieldBuilder() {
         if (handShakeRspBuilder_ == null) {
           if (!(packCase_ == 3)) {
             pack_ = com.lsm1998.chat.proto.DataProto.HandShakeRsp.getDefaultInstance();
           }
           handShakeRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              HandShakeRsp, HandShakeRsp.Builder, HandShakeRspOrBuilder>(
+              com.lsm1998.chat.proto.DataProto.HandShakeRsp, com.lsm1998.chat.proto.DataProto.HandShakeRsp.Builder, com.lsm1998.chat.proto.DataProto.HandShakeRspOrBuilder>(
                   (com.lsm1998.chat.proto.DataProto.HandShakeRsp) pack_,
                   getParentForChildren(),
                   isClean());
@@ -2476,14 +4352,22 @@ public final class DataProto
       }
 
       private com.google.protobuf.SingleFieldBuilderV3<
-          SendMsgRsp, SendMsgRsp.Builder, SendMsgRspOrBuilder> sendMsgRspBuilder_;
+          com.lsm1998.chat.proto.DataProto.SendMsgRsp, com.lsm1998.chat.proto.DataProto.SendMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder> sendMsgRspBuilder_;
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public boolean hasSendMsgRsp() {
         return packCase_ == 4;
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgRsp getSendMsgRsp() {
@@ -2500,6 +4384,10 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public Builder setSendMsgRsp(com.lsm1998.chat.proto.DataProto.SendMsgRsp value) {
@@ -2516,6 +4404,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public Builder setSendMsgRsp(
@@ -2530,6 +4422,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public Builder mergeSendMsgRsp(com.lsm1998.chat.proto.DataProto.SendMsgRsp value) {
@@ -2552,6 +4448,10 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public Builder clearSendMsgRsp() {
@@ -2571,12 +4471,20 @@ public final class DataProto
         return this;
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgRsp.Builder getSendMsgRspBuilder() {
         return getSendMsgRspFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       public com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder getSendMsgRspOrBuilder() {
@@ -2590,17 +4498,21 @@ public final class DataProto
         }
       }
       /**
+       * <pre>
+       * 收到消息
+       * </pre>
+       *
        * <code>.proto.SendMsgRsp sendMsgRsp = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          SendMsgRsp, SendMsgRsp.Builder, SendMsgRspOrBuilder>
+          com.lsm1998.chat.proto.DataProto.SendMsgRsp, com.lsm1998.chat.proto.DataProto.SendMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder> 
           getSendMsgRspFieldBuilder() {
         if (sendMsgRspBuilder_ == null) {
           if (!(packCase_ == 4)) {
             pack_ = com.lsm1998.chat.proto.DataProto.SendMsgRsp.getDefaultInstance();
           }
           sendMsgRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              SendMsgRsp, SendMsgRsp.Builder, SendMsgRspOrBuilder>(
+              com.lsm1998.chat.proto.DataProto.SendMsgRsp, com.lsm1998.chat.proto.DataProto.SendMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SendMsgRspOrBuilder>(
                   (com.lsm1998.chat.proto.DataProto.SendMsgRsp) pack_,
                   getParentForChildren(),
                   isClean());
@@ -2609,6 +4521,350 @@ public final class DataProto
         packCase_ = 4;
         onChanged();;
         return sendMsgRspBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp, com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder> broadcastMsgRspBuilder_;
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public boolean hasBroadcastMsgRsp() {
+        return packCase_ == 5;
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getBroadcastMsgRsp() {
+        if (broadcastMsgRspBuilder_ == null) {
+          if (packCase_ == 5) {
+            return (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+        } else {
+          if (packCase_ == 5) {
+            return broadcastMsgRspBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public Builder setBroadcastMsgRsp(com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp value) {
+        if (broadcastMsgRspBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          broadcastMsgRspBuilder_.setMessage(value);
+        }
+        packCase_ = 5;
+        return this;
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public Builder setBroadcastMsgRsp(
+          com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder builderForValue) {
+        if (broadcastMsgRspBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          broadcastMsgRspBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 5;
+        return this;
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public Builder mergeBroadcastMsgRsp(com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp value) {
+        if (broadcastMsgRspBuilder_ == null) {
+          if (packCase_ == 5 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.newBuilder((com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 5) {
+            broadcastMsgRspBuilder_.mergeFrom(value);
+          }
+          broadcastMsgRspBuilder_.setMessage(value);
+        }
+        packCase_ = 5;
+        return this;
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public Builder clearBroadcastMsgRsp() {
+        if (broadcastMsgRspBuilder_ == null) {
+          if (packCase_ == 5) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 5) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          broadcastMsgRspBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder getBroadcastMsgRspBuilder() {
+        return getBroadcastMsgRspFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder getBroadcastMsgRspOrBuilder() {
+        if ((packCase_ == 5) && (broadcastMsgRspBuilder_ != null)) {
+          return broadcastMsgRspBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 5) {
+            return (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 广播消息
+       * </pre>
+       *
+       * <code>.proto.BroadcastMsgRsp broadcastMsgRsp = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp, com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder> 
+          getBroadcastMsgRspFieldBuilder() {
+        if (broadcastMsgRspBuilder_ == null) {
+          if (!(packCase_ == 5)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+          }
+          broadcastMsgRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp, com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 5;
+        onChanged();;
+        return broadcastMsgRspBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.SystemMsgRsp, com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder> systemMsgRspBuilder_;
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public boolean hasSystemMsgRsp() {
+        return packCase_ == 6;
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRsp getSystemMsgRsp() {
+        if (systemMsgRspBuilder_ == null) {
+          if (packCase_ == 6) {
+            return (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+        } else {
+          if (packCase_ == 6) {
+            return systemMsgRspBuilder_.getMessage();
+          }
+          return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public Builder setSystemMsgRsp(com.lsm1998.chat.proto.DataProto.SystemMsgRsp value) {
+        if (systemMsgRspBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pack_ = value;
+          onChanged();
+        } else {
+          systemMsgRspBuilder_.setMessage(value);
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public Builder setSystemMsgRsp(
+          com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder builderForValue) {
+        if (systemMsgRspBuilder_ == null) {
+          pack_ = builderForValue.build();
+          onChanged();
+        } else {
+          systemMsgRspBuilder_.setMessage(builderForValue.build());
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public Builder mergeSystemMsgRsp(com.lsm1998.chat.proto.DataProto.SystemMsgRsp value) {
+        if (systemMsgRspBuilder_ == null) {
+          if (packCase_ == 6 &&
+              pack_ != com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance()) {
+            pack_ = com.lsm1998.chat.proto.DataProto.SystemMsgRsp.newBuilder((com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            pack_ = value;
+          }
+          onChanged();
+        } else {
+          if (packCase_ == 6) {
+            systemMsgRspBuilder_.mergeFrom(value);
+          }
+          systemMsgRspBuilder_.setMessage(value);
+        }
+        packCase_ = 6;
+        return this;
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public Builder clearSystemMsgRsp() {
+        if (systemMsgRspBuilder_ == null) {
+          if (packCase_ == 6) {
+            packCase_ = 0;
+            pack_ = null;
+            onChanged();
+          }
+        } else {
+          if (packCase_ == 6) {
+            packCase_ = 0;
+            pack_ = null;
+          }
+          systemMsgRspBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder getSystemMsgRspBuilder() {
+        return getSystemMsgRspFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder getSystemMsgRspOrBuilder() {
+        if ((packCase_ == 6) && (systemMsgRspBuilder_ != null)) {
+          return systemMsgRspBuilder_.getMessageOrBuilder();
+        } else {
+          if (packCase_ == 6) {
+            return (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_;
+          }
+          return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+        }
+      }
+      /**
+       * <pre>
+       * 系统通知
+       * </pre>
+       *
+       * <code>.proto.SystemMsgRsp systemMsgRsp = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.lsm1998.chat.proto.DataProto.SystemMsgRsp, com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder> 
+          getSystemMsgRspFieldBuilder() {
+        if (systemMsgRspBuilder_ == null) {
+          if (!(packCase_ == 6)) {
+            pack_ = com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+          }
+          systemMsgRspBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.lsm1998.chat.proto.DataProto.SystemMsgRsp, com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder, com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder>(
+                  (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) pack_,
+                  getParentForChildren(),
+                  isClean());
+          pack_ = null;
+        }
+        packCase_ = 6;
+        onChanged();;
+        return systemMsgRspBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2663,432 +4919,6 @@ public final class DataProto
 
   }
 
-  public interface AckReqOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:proto.AckReq)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * <pre>
-   * ack确认
-   * </pre>
-   *
-   * Protobuf type {@code proto.AckReq}
-   */
-  public  static final class AckReq extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:proto.AckReq)
-      AckReqOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AckReq.newBuilder() to construct.
-    private AckReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AckReq() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new AckReq();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AckReq(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.lsm1998.chat.proto.DataProto.internal_static_proto_AckReq_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.lsm1998.chat.proto.DataProto.internal_static_proto_AckReq_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lsm1998.chat.proto.DataProto.AckReq.class, com.lsm1998.chat.proto.DataProto.AckReq.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.AckReq)) {
-        return super.equals(obj);
-      }
-      com.lsm1998.chat.proto.DataProto.AckReq other = (com.lsm1998.chat.proto.DataProto.AckReq) obj;
-
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.lsm1998.chat.proto.DataProto.AckReq parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.AckReq prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * ack确认
-     * </pre>
-     *
-     * Protobuf type {@code proto.AckReq}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:proto.AckReq)
-        com.lsm1998.chat.proto.DataProto.AckReqOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.lsm1998.chat.proto.DataProto.internal_static_proto_AckReq_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.lsm1998.chat.proto.DataProto.internal_static_proto_AckReq_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lsm1998.chat.proto.DataProto.AckReq.class, com.lsm1998.chat.proto.DataProto.AckReq.Builder.class);
-      }
-
-      // Construct using com.lsm1998.chat.proto.DataProto.AckReq.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.lsm1998.chat.proto.DataProto.internal_static_proto_AckReq_descriptor;
-      }
-
-      @java.lang.Override
-      public com.lsm1998.chat.proto.DataProto.AckReq getDefaultInstanceForType() {
-        return com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.lsm1998.chat.proto.DataProto.AckReq build() {
-        com.lsm1998.chat.proto.DataProto.AckReq result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.lsm1998.chat.proto.DataProto.AckReq buildPartial() {
-        com.lsm1998.chat.proto.DataProto.AckReq result = new com.lsm1998.chat.proto.DataProto.AckReq(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lsm1998.chat.proto.DataProto.AckReq) {
-          return mergeFrom((com.lsm1998.chat.proto.DataProto.AckReq)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.AckReq other) {
-        if (other == com.lsm1998.chat.proto.DataProto.AckReq.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.lsm1998.chat.proto.DataProto.AckReq parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lsm1998.chat.proto.DataProto.AckReq) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:proto.AckReq)
-    }
-
-    // @@protoc_insertion_point(class_scope:proto.AckReq)
-    private static final com.lsm1998.chat.proto.DataProto.AckReq DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.AckReq();
-    }
-
-    public static com.lsm1998.chat.proto.DataProto.AckReq getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AckReq>
-        PARSER = new com.google.protobuf.AbstractParser<AckReq>() {
-      @java.lang.Override
-      public AckReq parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckReq(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AckReq> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AckReq> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.lsm1998.chat.proto.DataProto.AckReq getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface AckRspOrBuilder extends
       // @@protoc_insertion_point(interface_extends:proto.AckRsp)
       com.google.protobuf.MessageOrBuilder {
@@ -3098,11 +4928,41 @@ public final class DataProto
      * 响应码
      * </pre>
      *
-     * <code>int32 code = 1;</code>
+     * <code>.proto.ResultCode code = 1;</code>
      */
-    int getCode();
+    int getCodeValue();
+    /**
+     * <pre>
+     * 响应码
+     * </pre>
+     *
+     * <code>.proto.ResultCode code = 1;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.ResultCode getCode();
+
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>int64 user_id = 2;</code>
+     */
+    long getUserId();
+
+    /**
+     * <pre>
+     * 辨别的时间戳
+     * </pre>
+     *
+     * <code>int64 time_stamp = 3;</code>
+     */
+    long getTimeStamp();
   }
   /**
+   * <pre>
+   * ack确认
+   * </pre>
+   *
    * Protobuf type {@code proto.AckRsp}
    */
   public  static final class AckRsp extends
@@ -3115,6 +4975,7 @@ public final class DataProto
       super(builder);
     }
     private AckRsp() {
+      code_ = 0;
     }
 
     @java.lang.Override
@@ -3148,8 +5009,19 @@ public final class DataProto
               done = true;
               break;
             case 8: {
+              int rawValue = input.readEnum();
 
-              code_ = input.readInt32();
+              code_ = rawValue;
+              break;
+            }
+            case 16: {
+
+              userId_ = input.readInt64();
+              break;
+            }
+            case 24: {
+
+              timeStamp_ = input.readInt64();
               break;
             }
             default: {
@@ -3191,10 +5063,48 @@ public final class DataProto
      * 响应码
      * </pre>
      *
-     * <code>int32 code = 1;</code>
+     * <code>.proto.ResultCode code = 1;</code>
      */
-    public int getCode() {
+    public int getCodeValue() {
       return code_;
+    }
+    /**
+     * <pre>
+     * 响应码
+     * </pre>
+     *
+     * <code>.proto.ResultCode code = 1;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.ResultCode getCode() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.ResultCode result = com.lsm1998.chat.proto.DataProto.ResultCode.valueOf(code_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.ResultCode.UNRECOGNIZED : result;
+    }
+
+    public static final int USER_ID_FIELD_NUMBER = 2;
+    private long userId_;
+    /**
+     * <pre>
+     * 用户ID
+     * </pre>
+     *
+     * <code>int64 user_id = 2;</code>
+     */
+    public long getUserId() {
+      return userId_;
+    }
+
+    public static final int TIME_STAMP_FIELD_NUMBER = 3;
+    private long timeStamp_;
+    /**
+     * <pre>
+     * 辨别的时间戳
+     * </pre>
+     *
+     * <code>int64 time_stamp = 3;</code>
+     */
+    public long getTimeStamp() {
+      return timeStamp_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3211,8 +5121,14 @@ public final class DataProto
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
+      if (code_ != com.lsm1998.chat.proto.DataProto.ResultCode.OK.getNumber()) {
+        output.writeEnum(1, code_);
+      }
+      if (userId_ != 0L) {
+        output.writeInt64(2, userId_);
+      }
+      if (timeStamp_ != 0L) {
+        output.writeInt64(3, timeStamp_);
       }
       unknownFields.writeTo(output);
     }
@@ -3223,9 +5139,17 @@ public final class DataProto
       if (size != -1) return size;
 
       size = 0;
-      if (code_ != 0) {
+      if (code_ != com.lsm1998.chat.proto.DataProto.ResultCode.OK.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
+          .computeEnumSize(1, code_);
+      }
+      if (userId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, userId_);
+      }
+      if (timeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, timeStamp_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3242,8 +5166,11 @@ public final class DataProto
       }
       com.lsm1998.chat.proto.DataProto.AckRsp other = (com.lsm1998.chat.proto.DataProto.AckRsp) obj;
 
-      if (getCode()
-          != other.getCode()) return false;
+      if (code_ != other.code_) return false;
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3256,7 +5183,13 @@ public final class DataProto
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
+      hash = (53 * hash) + code_;
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+      hash = (37 * hash) + TIME_STAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3348,11 +5281,15 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * <pre>
+     * ack确认
+     * </pre>
+     *
      * Protobuf type {@code proto.AckRsp}
      */
     public static final class Builder extends
@@ -3378,7 +5315,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3391,6 +5328,10 @@ public final class DataProto
       public Builder clear() {
         super.clear();
         code_ = 0;
+
+        userId_ = 0L;
+
+        timeStamp_ = 0L;
 
         return this;
       }
@@ -3419,6 +5360,8 @@ public final class DataProto
       public com.lsm1998.chat.proto.DataProto.AckRsp buildPartial() {
         com.lsm1998.chat.proto.DataProto.AckRsp result = new com.lsm1998.chat.proto.DataProto.AckRsp(this);
         result.code_ = code_;
+        result.userId_ = userId_;
+        result.timeStamp_ = timeStamp_;
         onBuilt();
         return result;
       }
@@ -3467,8 +5410,14 @@ public final class DataProto
 
       public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.AckRsp other) {
         if (other == com.lsm1998.chat.proto.DataProto.AckRsp.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
+        if (other.code_ != 0) {
+          setCodeValue(other.getCodeValue());
+        }
+        if (other.getUserId() != 0L) {
+          setUserId(other.getUserId());
+        }
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3499,15 +5448,15 @@ public final class DataProto
         return this;
       }
 
-      private int code_ ;
+      private int code_ = 0;
       /**
        * <pre>
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
        */
-      public int getCode() {
+      public int getCodeValue() {
         return code_;
       }
       /**
@@ -3515,10 +5464,9 @@ public final class DataProto
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
        */
-      public Builder setCode(int value) {
-
+      public Builder setCodeValue(int value) {
         code_ = value;
         onChanged();
         return this;
@@ -3528,11 +5476,115 @@ public final class DataProto
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.ResultCode getCode() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.ResultCode result = com.lsm1998.chat.proto.DataProto.ResultCode.valueOf(code_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.ResultCode.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * 响应码
+       * </pre>
+       *
+       * <code>.proto.ResultCode code = 1;</code>
+       */
+      public Builder setCode(com.lsm1998.chat.proto.DataProto.ResultCode value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        code_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 响应码
+       * </pre>
+       *
+       * <code>.proto.ResultCode code = 1;</code>
        */
       public Builder clearCode() {
-
+        
         code_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long userId_ ;
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>int64 user_id = 2;</code>
+       */
+      public long getUserId() {
+        return userId_;
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>int64 user_id = 2;</code>
+       */
+      public Builder setUserId(long value) {
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户ID
+       * </pre>
+       *
+       * <code>int64 user_id = 2;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long timeStamp_ ;
+      /**
+       * <pre>
+       * 辨别的时间戳
+       * </pre>
+       *
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public long getTimeStamp() {
+        return timeStamp_;
+      }
+      /**
+       * <pre>
+       * 辨别的时间戳
+       * </pre>
+       *
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public Builder setTimeStamp(long value) {
+        
+        timeStamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 辨别的时间戳
+       * </pre>
+       *
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public Builder clearTimeStamp() {
+        
+        timeStamp_ = 0L;
         onChanged();
         return this;
       }
@@ -3713,7 +5765,7 @@ public final class DataProto
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         token_ = s;
@@ -3731,7 +5783,7 @@ public final class DataProto
         getTokenBytes() {
       java.lang.Object ref = token_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         token_ = b;
@@ -3891,7 +5943,7 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3925,7 +5977,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4078,7 +6130,7 @@ public final class DataProto
           getTokenBytes() {
         java.lang.Object ref = token_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           token_ = b;
@@ -4099,7 +6151,7 @@ public final class DataProto
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         token_ = value;
         onChanged();
         return this;
@@ -4112,7 +6164,7 @@ public final class DataProto
        * <code>string token = 1;</code>
        */
       public Builder clearToken() {
-
+        
         token_ = getDefaultInstance().getToken();
         onChanged();
         return this;
@@ -4130,7 +6182,7 @@ public final class DataProto
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         token_ = value;
         onChanged();
         return this;
@@ -4197,9 +6249,17 @@ public final class DataProto
      * 响应码
      * </pre>
      *
-     * <code>int32 code = 1;</code>
+     * <code>.proto.ResultCode code = 1;</code>
      */
-    int getCode();
+    int getCodeValue();
+    /**
+     * <pre>
+     * 响应码
+     * </pre>
+     *
+     * <code>.proto.ResultCode code = 1;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.ResultCode getCode();
 
     /**
      * <pre>
@@ -4220,6 +6280,10 @@ public final class DataProto
         getAesKeyBytes();
   }
   /**
+   * <pre>
+   * 握手回复
+   * </pre>
+   *
    * Protobuf type {@code proto.HandShakeRsp}
    */
   public  static final class HandShakeRsp extends
@@ -4232,6 +6296,7 @@ public final class DataProto
       super(builder);
     }
     private HandShakeRsp() {
+      code_ = 0;
       aesKey_ = "";
     }
 
@@ -4266,8 +6331,9 @@ public final class DataProto
               done = true;
               break;
             case 8: {
+              int rawValue = input.readEnum();
 
-              code_ = input.readInt32();
+              code_ = rawValue;
               break;
             }
             case 18: {
@@ -4315,10 +6381,22 @@ public final class DataProto
      * 响应码
      * </pre>
      *
-     * <code>int32 code = 1;</code>
+     * <code>.proto.ResultCode code = 1;</code>
      */
-    public int getCode() {
+    public int getCodeValue() {
       return code_;
+    }
+    /**
+     * <pre>
+     * 响应码
+     * </pre>
+     *
+     * <code>.proto.ResultCode code = 1;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.ResultCode getCode() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.ResultCode result = com.lsm1998.chat.proto.DataProto.ResultCode.valueOf(code_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.ResultCode.UNRECOGNIZED : result;
     }
 
     public static final int AES_KEY_FIELD_NUMBER = 2;
@@ -4335,7 +6413,7 @@ public final class DataProto
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         aesKey_ = s;
@@ -4353,7 +6431,7 @@ public final class DataProto
         getAesKeyBytes() {
       java.lang.Object ref = aesKey_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         aesKey_ = b;
@@ -4377,8 +6455,8 @@ public final class DataProto
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
+      if (code_ != com.lsm1998.chat.proto.DataProto.ResultCode.OK.getNumber()) {
+        output.writeEnum(1, code_);
       }
       if (!getAesKeyBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, aesKey_);
@@ -4392,9 +6470,9 @@ public final class DataProto
       if (size != -1) return size;
 
       size = 0;
-      if (code_ != 0) {
+      if (code_ != com.lsm1998.chat.proto.DataProto.ResultCode.OK.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
+          .computeEnumSize(1, code_);
       }
       if (!getAesKeyBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, aesKey_);
@@ -4414,8 +6492,7 @@ public final class DataProto
       }
       com.lsm1998.chat.proto.DataProto.HandShakeRsp other = (com.lsm1998.chat.proto.DataProto.HandShakeRsp) obj;
 
-      if (getCode()
-          != other.getCode()) return false;
+      if (code_ != other.code_) return false;
       if (!getAesKey()
           .equals(other.getAesKey())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -4430,7 +6507,7 @@ public final class DataProto
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
+      hash = (53 * hash) + code_;
       hash = (37 * hash) + AES_KEY_FIELD_NUMBER;
       hash = (53 * hash) + getAesKey().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -4524,11 +6601,15 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * <pre>
+     * 握手回复
+     * </pre>
+     *
      * Protobuf type {@code proto.HandShakeRsp}
      */
     public static final class Builder extends
@@ -4554,7 +6635,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4646,8 +6727,8 @@ public final class DataProto
 
       public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.HandShakeRsp other) {
         if (other == com.lsm1998.chat.proto.DataProto.HandShakeRsp.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
+        if (other.code_ != 0) {
+          setCodeValue(other.getCodeValue());
         }
         if (!other.getAesKey().isEmpty()) {
           aesKey_ = other.aesKey_;
@@ -4682,15 +6763,15 @@ public final class DataProto
         return this;
       }
 
-      private int code_ ;
+      private int code_ = 0;
       /**
        * <pre>
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
        */
-      public int getCode() {
+      public int getCodeValue() {
         return code_;
       }
       /**
@@ -4698,10 +6779,9 @@ public final class DataProto
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
        */
-      public Builder setCode(int value) {
-
+      public Builder setCodeValue(int value) {
         code_ = value;
         onChanged();
         return this;
@@ -4711,10 +6791,38 @@ public final class DataProto
        * 响应码
        * </pre>
        *
-       * <code>int32 code = 1;</code>
+       * <code>.proto.ResultCode code = 1;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.ResultCode getCode() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.ResultCode result = com.lsm1998.chat.proto.DataProto.ResultCode.valueOf(code_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.ResultCode.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * 响应码
+       * </pre>
+       *
+       * <code>.proto.ResultCode code = 1;</code>
+       */
+      public Builder setCode(com.lsm1998.chat.proto.DataProto.ResultCode value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        code_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 响应码
+       * </pre>
+       *
+       * <code>.proto.ResultCode code = 1;</code>
        */
       public Builder clearCode() {
-
+        
         code_ = 0;
         onChanged();
         return this;
@@ -4751,7 +6859,7 @@ public final class DataProto
           getAesKeyBytes() {
         java.lang.Object ref = aesKey_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           aesKey_ = b;
@@ -4772,7 +6880,7 @@ public final class DataProto
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         aesKey_ = value;
         onChanged();
         return this;
@@ -4785,7 +6893,7 @@ public final class DataProto
        * <code>string aes_key = 2;</code>
        */
       public Builder clearAesKey() {
-
+        
         aesKey_ = getDefaultInstance().getAesKey();
         onChanged();
         return this;
@@ -4803,7 +6911,7 @@ public final class DataProto
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         aesKey_ = value;
         onChanged();
         return this;
@@ -4891,13 +6999,22 @@ public final class DataProto
         getContentBytes();
 
     /**
-     * <code>int32 time = 5;</code>
+     * <code>int64 time_stamp = 5;</code>
      */
-    int getTime();
+    long getTimeStamp();
+
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SendType getType();
   }
   /**
    * <pre>
-   * 发送消息
+   * 发送消息(有ACK回复)
    * </pre>
    *
    * Protobuf type {@code proto.SendMsgReq}
@@ -4913,6 +7030,7 @@ public final class DataProto
     }
     private SendMsgReq() {
       content_ = "";
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -4968,7 +7086,13 @@ public final class DataProto
             }
             case 40: {
 
-              time_ = input.readInt32();
+              timeStamp_ = input.readInt64();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
               break;
             }
             default: {
@@ -5040,7 +7164,7 @@ public final class DataProto
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         content_ = s;
@@ -5054,7 +7178,7 @@ public final class DataProto
         getContentBytes() {
       java.lang.Object ref = content_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         content_ = b;
@@ -5064,13 +7188,30 @@ public final class DataProto
       }
     }
 
-    public static final int TIME_FIELD_NUMBER = 5;
-    private int time_;
+    public static final int TIME_STAMP_FIELD_NUMBER = 5;
+    private long timeStamp_;
     /**
-     * <code>int32 time = 5;</code>
+     * <code>int64 time_stamp = 5;</code>
      */
-    public int getTime() {
-      return time_;
+    public long getTimeStamp() {
+      return timeStamp_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 6;
+    private int type_;
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SendType getType() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.SendType result = com.lsm1998.chat.proto.DataProto.SendType.valueOf(type_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.SendType.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5099,8 +7240,11 @@ public final class DataProto
       if (!getContentBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, content_);
       }
-      if (time_ != 0) {
-        output.writeInt32(5, time_);
+      if (timeStamp_ != 0L) {
+        output.writeInt64(5, timeStamp_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SendType.SINGLE.getNumber()) {
+        output.writeEnum(6, type_);
       }
       unknownFields.writeTo(output);
     }
@@ -5126,9 +7270,13 @@ public final class DataProto
       if (!getContentBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, content_);
       }
-      if (time_ != 0) {
+      if (timeStamp_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, time_);
+          .computeInt64Size(5, timeStamp_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SendType.SINGLE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5153,8 +7301,9 @@ public final class DataProto
           != other.getFormId()) return false;
       if (!getContent()
           .equals(other.getContent())) return false;
-      if (getTime()
-          != other.getTime()) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
+      if (type_ != other.type_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5177,8 +7326,11 @@ public final class DataProto
           getFormId());
       hash = (37 * hash) + CONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getContent().hashCode();
-      hash = (37 * hash) + TIME_FIELD_NUMBER;
-      hash = (53 * hash) + getTime();
+      hash = (37 * hash) + TIME_STAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5270,13 +7422,13 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
      * <pre>
-     * 发送消息
+     * 发送消息(有ACK回复)
      * </pre>
      *
      * Protobuf type {@code proto.SendMsgReq}
@@ -5304,7 +7456,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5324,7 +7476,9 @@ public final class DataProto
 
         content_ = "";
 
-        time_ = 0;
+        timeStamp_ = 0L;
+
+        type_ = 0;
 
         return this;
       }
@@ -5356,7 +7510,8 @@ public final class DataProto
         result.toId_ = toId_;
         result.formId_ = formId_;
         result.content_ = content_;
-        result.time_ = time_;
+        result.timeStamp_ = timeStamp_;
+        result.type_ = type_;
         onBuilt();
         return result;
       }
@@ -5418,8 +7573,11 @@ public final class DataProto
           content_ = other.content_;
           onChanged();
         }
-        if (other.getTime() != 0) {
-          setTime(other.getTime());
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5461,7 +7619,7 @@ public final class DataProto
        * <code>int64 id = 1;</code>
        */
       public Builder setId(long value) {
-
+        
         id_ = value;
         onChanged();
         return this;
@@ -5470,7 +7628,7 @@ public final class DataProto
        * <code>int64 id = 1;</code>
        */
       public Builder clearId() {
-
+        
         id_ = 0L;
         onChanged();
         return this;
@@ -5487,7 +7645,7 @@ public final class DataProto
        * <code>int64 to_id = 2;</code>
        */
       public Builder setToId(long value) {
-
+        
         toId_ = value;
         onChanged();
         return this;
@@ -5496,7 +7654,7 @@ public final class DataProto
        * <code>int64 to_id = 2;</code>
        */
       public Builder clearToId() {
-
+        
         toId_ = 0L;
         onChanged();
         return this;
@@ -5513,7 +7671,7 @@ public final class DataProto
        * <code>int64 form_id = 3;</code>
        */
       public Builder setFormId(long value) {
-
+        
         formId_ = value;
         onChanged();
         return this;
@@ -5522,7 +7680,7 @@ public final class DataProto
        * <code>int64 form_id = 3;</code>
        */
       public Builder clearFormId() {
-
+        
         formId_ = 0L;
         onChanged();
         return this;
@@ -5551,7 +7709,7 @@ public final class DataProto
           getContentBytes() {
         java.lang.Object ref = content_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           content_ = b;
@@ -5568,7 +7726,7 @@ public final class DataProto
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         content_ = value;
         onChanged();
         return this;
@@ -5577,7 +7735,7 @@ public final class DataProto
        * <code>string content = 4;</code>
        */
       public Builder clearContent() {
-
+        
         content_ = getDefaultInstance().getContent();
         onChanged();
         return this;
@@ -5591,34 +7749,79 @@ public final class DataProto
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         content_ = value;
         onChanged();
         return this;
       }
 
-      private int time_ ;
+      private long timeStamp_ ;
       /**
-       * <code>int32 time = 5;</code>
+       * <code>int64 time_stamp = 5;</code>
        */
-      public int getTime() {
-        return time_;
+      public long getTimeStamp() {
+        return timeStamp_;
       }
       /**
-       * <code>int32 time = 5;</code>
+       * <code>int64 time_stamp = 5;</code>
        */
-      public Builder setTime(int value) {
-
-        time_ = value;
+      public Builder setTimeStamp(long value) {
+        
+        timeStamp_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 time = 5;</code>
+       * <code>int64 time_stamp = 5;</code>
        */
-      public Builder clearTime() {
+      public Builder clearTimeStamp() {
+        
+        timeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
 
-        time_ = 0;
+      private int type_ = 0;
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SendType getType() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.SendType result = com.lsm1998.chat.proto.DataProto.SendType.valueOf(type_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.SendType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder setType(com.lsm1998.chat.proto.DataProto.SendType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -5680,15 +7883,49 @@ public final class DataProto
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 响应码
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
+     * <code>int64 id = 1;</code>
      */
-    int getCode();
+    long getId();
+
+    /**
+     * <code>int64 to_id = 2;</code>
+     */
+    long getToId();
+
+    /**
+     * <code>int64 form_id = 3;</code>
+     */
+    long getFormId();
+
+    /**
+     * <code>string content = 4;</code>
+     */
+    java.lang.String getContent();
+    /**
+     * <code>string content = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getContentBytes();
+
+    /**
+     * <code>int64 time_stamp = 5;</code>
+     */
+    long getTimeStamp();
+
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SendType getType();
   }
   /**
+   * <pre>
+   * 收到消息(有ACK回复)
+   * </pre>
+   *
    * Protobuf type {@code proto.SendMsgRsp}
    */
   public  static final class SendMsgRsp extends
@@ -5701,6 +7938,8 @@ public final class DataProto
       super(builder);
     }
     private SendMsgRsp() {
+      content_ = "";
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -5735,7 +7974,34 @@ public final class DataProto
               break;
             case 8: {
 
-              code_ = input.readInt32();
+              id_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              toId_ = input.readInt64();
+              break;
+            }
+            case 24: {
+
+              formId_ = input.readInt64();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
+              break;
+            }
+            case 40: {
+
+              timeStamp_ = input.readInt64();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
               break;
             }
             default: {
@@ -5770,17 +8036,91 @@ public final class DataProto
               com.lsm1998.chat.proto.DataProto.SendMsgRsp.class, com.lsm1998.chat.proto.DataProto.SendMsgRsp.Builder.class);
     }
 
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
+    public static final int ID_FIELD_NUMBER = 1;
+    private long id_;
     /**
-     * <pre>
-     * 响应码
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
+     * <code>int64 id = 1;</code>
      */
-    public int getCode() {
-      return code_;
+    public long getId() {
+      return id_;
+    }
+
+    public static final int TO_ID_FIELD_NUMBER = 2;
+    private long toId_;
+    /**
+     * <code>int64 to_id = 2;</code>
+     */
+    public long getToId() {
+      return toId_;
+    }
+
+    public static final int FORM_ID_FIELD_NUMBER = 3;
+    private long formId_;
+    /**
+     * <code>int64 form_id = 3;</code>
+     */
+    public long getFormId() {
+      return formId_;
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 4;
+    private volatile java.lang.Object content_;
+    /**
+     * <code>string content = 4;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string content = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TIME_STAMP_FIELD_NUMBER = 5;
+    private long timeStamp_;
+    /**
+     * <code>int64 time_stamp = 5;</code>
+     */
+    public long getTimeStamp() {
+      return timeStamp_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 6;
+    private int type_;
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.proto.SendType type = 6;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SendType getType() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.SendType result = com.lsm1998.chat.proto.DataProto.SendType.valueOf(type_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.SendType.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5797,8 +8137,23 @@ public final class DataProto
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
+      if (id_ != 0L) {
+        output.writeInt64(1, id_);
+      }
+      if (toId_ != 0L) {
+        output.writeInt64(2, toId_);
+      }
+      if (formId_ != 0L) {
+        output.writeInt64(3, formId_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, content_);
+      }
+      if (timeStamp_ != 0L) {
+        output.writeInt64(5, timeStamp_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SendType.SINGLE.getNumber()) {
+        output.writeEnum(6, type_);
       }
       unknownFields.writeTo(output);
     }
@@ -5809,9 +8164,28 @@ public final class DataProto
       if (size != -1) return size;
 
       size = 0;
-      if (code_ != 0) {
+      if (id_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
+          .computeInt64Size(1, id_);
+      }
+      if (toId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, toId_);
+      }
+      if (formId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, formId_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, content_);
+      }
+      if (timeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, timeStamp_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SendType.SINGLE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(6, type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5828,8 +8202,17 @@ public final class DataProto
       }
       com.lsm1998.chat.proto.DataProto.SendMsgRsp other = (com.lsm1998.chat.proto.DataProto.SendMsgRsp) obj;
 
-      if (getCode()
-          != other.getCode()) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getToId()
+          != other.getToId()) return false;
+      if (getFormId()
+          != other.getFormId()) return false;
+      if (!getContent()
+          .equals(other.getContent())) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
+      if (type_ != other.type_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5841,8 +8224,22 @@ public final class DataProto
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + TO_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getToId());
+      hash = (37 * hash) + FORM_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFormId());
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
+      hash = (37 * hash) + TIME_STAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5934,11 +8331,15 @@ public final class DataProto
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * <pre>
+     * 收到消息(有ACK回复)
+     * </pre>
+     *
      * Protobuf type {@code proto.SendMsgRsp}
      */
     public static final class Builder extends
@@ -5964,7 +8365,7 @@ public final class DataProto
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5976,7 +8377,17 @@ public final class DataProto
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        code_ = 0;
+        id_ = 0L;
+
+        toId_ = 0L;
+
+        formId_ = 0L;
+
+        content_ = "";
+
+        timeStamp_ = 0L;
+
+        type_ = 0;
 
         return this;
       }
@@ -6004,7 +8415,12 @@ public final class DataProto
       @java.lang.Override
       public com.lsm1998.chat.proto.DataProto.SendMsgRsp buildPartial() {
         com.lsm1998.chat.proto.DataProto.SendMsgRsp result = new com.lsm1998.chat.proto.DataProto.SendMsgRsp(this);
-        result.code_ = code_;
+        result.id_ = id_;
+        result.toId_ = toId_;
+        result.formId_ = formId_;
+        result.content_ = content_;
+        result.timeStamp_ = timeStamp_;
+        result.type_ = type_;
         onBuilt();
         return result;
       }
@@ -6053,8 +8469,24 @@ public final class DataProto
 
       public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.SendMsgRsp other) {
         if (other == com.lsm1998.chat.proto.DataProto.SendMsgRsp.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (other.getToId() != 0L) {
+          setToId(other.getToId());
+        }
+        if (other.getFormId() != 0L) {
+          setFormId(other.getFormId());
+        }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
+        }
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6085,40 +8517,220 @@ public final class DataProto
         return this;
       }
 
-      private int code_ ;
+      private long id_ ;
       /**
-       * <pre>
-       * 响应码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
+       * <code>int64 id = 1;</code>
        */
-      public int getCode() {
-        return code_;
+      public long getId() {
+        return id_;
       }
       /**
-       * <pre>
-       * 响应码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
+       * <code>int64 id = 1;</code>
        */
-      public Builder setCode(int value) {
-
-        code_ = value;
+      public Builder setId(long value) {
+        
+        id_ = value;
         onChanged();
         return this;
       }
       /**
-       * <pre>
-       * 响应码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
+       * <code>int64 id = 1;</code>
        */
-      public Builder clearCode() {
+      public Builder clearId() {
+        
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
 
-        code_ = 0;
+      private long toId_ ;
+      /**
+       * <code>int64 to_id = 2;</code>
+       */
+      public long getToId() {
+        return toId_;
+      }
+      /**
+       * <code>int64 to_id = 2;</code>
+       */
+      public Builder setToId(long value) {
+        
+        toId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 to_id = 2;</code>
+       */
+      public Builder clearToId() {
+        
+        toId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long formId_ ;
+      /**
+       * <code>int64 form_id = 3;</code>
+       */
+      public long getFormId() {
+        return formId_;
+      }
+      /**
+       * <code>int64 form_id = 3;</code>
+       */
+      public Builder setFormId(long value) {
+        
+        formId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 form_id = 3;</code>
+       */
+      public Builder clearFormId() {
+        
+        formId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object content_ = "";
+      /**
+       * <code>string content = 4;</code>
+       */
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder clearContent() {
+        
+        content_ = getDefaultInstance().getContent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        content_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long timeStamp_ ;
+      /**
+       * <code>int64 time_stamp = 5;</code>
+       */
+      public long getTimeStamp() {
+        return timeStamp_;
+      }
+      /**
+       * <code>int64 time_stamp = 5;</code>
+       */
+      public Builder setTimeStamp(long value) {
+        
+        timeStamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time_stamp = 5;</code>
+       */
+      public Builder clearTimeStamp() {
+        
+        timeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SendType getType() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.SendType result = com.lsm1998.chat.proto.DataProto.SendType.valueOf(type_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.SendType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder setType(com.lsm1998.chat.proto.DataProto.SendType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SendType type = 6;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -6175,6 +8787,4306 @@ public final class DataProto
 
   }
 
+  public interface PongReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.PongReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    long getUserId();
+
+    /**
+     * <code>int64 time = 2;</code>
+     */
+    long getTime();
+  }
+  /**
+   * <pre>
+   * 心跳请求(有ACK回复)
+   * </pre>
+   *
+   * Protobuf type {@code proto.PongReq}
+   */
+  public  static final class PongReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.PongReq)
+      PongReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PongReq.newBuilder() to construct.
+    private PongReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PongReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PongReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PongReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              userId_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_PongReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_PongReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.PongReq.class, com.lsm1998.chat.proto.DataProto.PongReq.Builder.class);
+    }
+
+    public static final int USER_ID_FIELD_NUMBER = 1;
+    private long userId_;
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    public long getUserId() {
+      return userId_;
+    }
+
+    public static final int TIME_FIELD_NUMBER = 2;
+    private long time_;
+    /**
+     * <code>int64 time = 2;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (userId_ != 0L) {
+        output.writeInt64(1, userId_);
+      }
+      if (time_ != 0L) {
+        output.writeInt64(2, time_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (userId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, userId_);
+      }
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, time_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.PongReq)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.PongReq other = (com.lsm1998.chat.proto.DataProto.PongReq) obj;
+
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (getTime()
+          != other.getTime()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.PongReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.PongReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 心跳请求(有ACK回复)
+     * </pre>
+     *
+     * Protobuf type {@code proto.PongReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.PongReq)
+        com.lsm1998.chat.proto.DataProto.PongReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_PongReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_PongReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.PongReq.class, com.lsm1998.chat.proto.DataProto.PongReq.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.PongReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        userId_ = 0L;
+
+        time_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_PongReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.PongReq getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.PongReq build() {
+        com.lsm1998.chat.proto.DataProto.PongReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.PongReq buildPartial() {
+        com.lsm1998.chat.proto.DataProto.PongReq result = new com.lsm1998.chat.proto.DataProto.PongReq(this);
+        result.userId_ = userId_;
+        result.time_ = time_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.PongReq) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.PongReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.PongReq other) {
+        if (other == com.lsm1998.chat.proto.DataProto.PongReq.getDefaultInstance()) return this;
+        if (other.getUserId() != 0L) {
+          setUserId(other.getUserId());
+        }
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.PongReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.PongReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long userId_ ;
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public long getUserId() {
+        return userId_;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder setUserId(long value) {
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <code>int64 time = 2;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>int64 time = 2;</code>
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time = 2;</code>
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.PongReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.PongReq)
+    private static final com.lsm1998.chat.proto.DataProto.PongReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.PongReq();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.PongReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PongReq>
+        PARSER = new com.google.protobuf.AbstractParser<PongReq>() {
+      @java.lang.Override
+      public PongReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PongReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PongReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PongReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.PongReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface LeaveReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.LeaveReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    long getUserId();
+  }
+  /**
+   * Protobuf type {@code proto.LeaveReq}
+   */
+  public  static final class LeaveReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.LeaveReq)
+      LeaveReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use LeaveReq.newBuilder() to construct.
+    private LeaveReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private LeaveReq() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new LeaveReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LeaveReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              userId_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_LeaveReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_LeaveReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.LeaveReq.class, com.lsm1998.chat.proto.DataProto.LeaveReq.Builder.class);
+    }
+
+    public static final int USER_ID_FIELD_NUMBER = 1;
+    private long userId_;
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    public long getUserId() {
+      return userId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (userId_ != 0L) {
+        output.writeInt64(1, userId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (userId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, userId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.LeaveReq)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.LeaveReq other = (com.lsm1998.chat.proto.DataProto.LeaveReq) obj;
+
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.LeaveReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.LeaveReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.LeaveReq)
+        com.lsm1998.chat.proto.DataProto.LeaveReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_LeaveReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_LeaveReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.LeaveReq.class, com.lsm1998.chat.proto.DataProto.LeaveReq.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.LeaveReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        userId_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_LeaveReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.LeaveReq getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.LeaveReq build() {
+        com.lsm1998.chat.proto.DataProto.LeaveReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.LeaveReq buildPartial() {
+        com.lsm1998.chat.proto.DataProto.LeaveReq result = new com.lsm1998.chat.proto.DataProto.LeaveReq(this);
+        result.userId_ = userId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.LeaveReq) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.LeaveReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.LeaveReq other) {
+        if (other == com.lsm1998.chat.proto.DataProto.LeaveReq.getDefaultInstance()) return this;
+        if (other.getUserId() != 0L) {
+          setUserId(other.getUserId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.LeaveReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.LeaveReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long userId_ ;
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public long getUserId() {
+        return userId_;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder setUserId(long value) {
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.LeaveReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.LeaveReq)
+    private static final com.lsm1998.chat.proto.DataProto.LeaveReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.LeaveReq();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.LeaveReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<LeaveReq>
+        PARSER = new com.google.protobuf.AbstractParser<LeaveReq>() {
+      @java.lang.Override
+      public LeaveReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LeaveReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<LeaveReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LeaveReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.LeaveReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BroadcastMsgRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.BroadcastMsgRsp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 time = 1;</code>
+     */
+    long getTime();
+
+    /**
+     * <code>string title = 2;</code>
+     */
+    java.lang.String getTitle();
+    /**
+     * <code>string title = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getTitleBytes();
+
+    /**
+     * <code>string content = 3;</code>
+     */
+    java.lang.String getContent();
+    /**
+     * <code>string content = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getContentBytes();
+
+    /**
+     * <code>.proto.SystemMsgType type = 4;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>.proto.SystemMsgType type = 4;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SystemMsgType getType();
+  }
+  /**
+   * Protobuf type {@code proto.BroadcastMsgRsp}
+   */
+  public  static final class BroadcastMsgRsp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.BroadcastMsgRsp)
+      BroadcastMsgRspOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BroadcastMsgRsp.newBuilder() to construct.
+    private BroadcastMsgRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BroadcastMsgRsp() {
+      title_ = "";
+      content_ = "";
+      type_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BroadcastMsgRsp();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BroadcastMsgRsp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              time_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              title_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
+              break;
+            }
+            case 32: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_BroadcastMsgRsp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_BroadcastMsgRsp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.class, com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder.class);
+    }
+
+    public static final int TIME_FIELD_NUMBER = 1;
+    private long time_;
+    /**
+     * <code>int64 time = 1;</code>
+     */
+    public long getTime() {
+      return time_;
+    }
+
+    public static final int TITLE_FIELD_NUMBER = 2;
+    private volatile java.lang.Object title_;
+    /**
+     * <code>string title = 2;</code>
+     */
+    public java.lang.String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        title_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string title = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTitleBytes() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        title_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 3;
+    private volatile java.lang.Object content_;
+    /**
+     * <code>string content = 3;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string content = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 4;
+    private int type_;
+    /**
+     * <code>.proto.SystemMsgType type = 4;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.proto.SystemMsgType type = 4;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SystemMsgType getType() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.SystemMsgType result = com.lsm1998.chat.proto.DataProto.SystemMsgType.valueOf(type_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.SystemMsgType.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (time_ != 0L) {
+        output.writeInt64(1, time_);
+      }
+      if (!getTitleBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, title_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, content_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SystemMsgType.MSG.getNumber()) {
+        output.writeEnum(4, type_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (time_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, time_);
+      }
+      if (!getTitleBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, title_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, content_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SystemMsgType.MSG.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, type_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp other = (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) obj;
+
+      if (getTime()
+          != other.getTime()) return false;
+      if (!getTitle()
+          .equals(other.getTitle())) return false;
+      if (!getContent()
+          .equals(other.getContent())) return false;
+      if (type_ != other.type_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTime());
+      hash = (37 * hash) + TITLE_FIELD_NUMBER;
+      hash = (53 * hash) + getTitle().hashCode();
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.BroadcastMsgRsp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.BroadcastMsgRsp)
+        com.lsm1998.chat.proto.DataProto.BroadcastMsgRspOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_BroadcastMsgRsp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_BroadcastMsgRsp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.class, com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        time_ = 0L;
+
+        title_ = "";
+
+        content_ = "";
+
+        type_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_BroadcastMsgRsp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp build() {
+        com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp buildPartial() {
+        com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp result = new com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp(this);
+        result.time_ = time_;
+        result.title_ = title_;
+        result.content_ = content_;
+        result.type_ = type_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp other) {
+        if (other == com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp.getDefaultInstance()) return this;
+        if (other.getTime() != 0L) {
+          setTime(other.getTime());
+        }
+        if (!other.getTitle().isEmpty()) {
+          title_ = other.title_;
+          onChanged();
+        }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long time_ ;
+      /**
+       * <code>int64 time = 1;</code>
+       */
+      public long getTime() {
+        return time_;
+      }
+      /**
+       * <code>int64 time = 1;</code>
+       */
+      public Builder setTime(long value) {
+        
+        time_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time = 1;</code>
+       */
+      public Builder clearTime() {
+        
+        time_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object title_ = "";
+      /**
+       * <code>string title = 2;</code>
+       */
+      public java.lang.String getTitle() {
+        java.lang.Object ref = title_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          title_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string title = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTitleBytes() {
+        java.lang.Object ref = title_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          title_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string title = 2;</code>
+       */
+      public Builder setTitle(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        title_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string title = 2;</code>
+       */
+      public Builder clearTitle() {
+        
+        title_ = getDefaultInstance().getTitle();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string title = 2;</code>
+       */
+      public Builder setTitleBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        title_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object content_ = "";
+      /**
+       * <code>string content = 3;</code>
+       */
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string content = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string content = 3;</code>
+       */
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 3;</code>
+       */
+      public Builder clearContent() {
+        
+        content_ = getDefaultInstance().getContent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 3;</code>
+       */
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        content_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.proto.SystemMsgType type = 4;</code>
+       */
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 4;</code>
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 4;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SystemMsgType getType() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.SystemMsgType result = com.lsm1998.chat.proto.DataProto.SystemMsgType.valueOf(type_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.SystemMsgType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 4;</code>
+       */
+      public Builder setType(com.lsm1998.chat.proto.DataProto.SystemMsgType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 4;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.BroadcastMsgRsp)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.BroadcastMsgRsp)
+    private static final com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BroadcastMsgRsp>
+        PARSER = new com.google.protobuf.AbstractParser<BroadcastMsgRsp>() {
+      @java.lang.Override
+      public BroadcastMsgRsp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BroadcastMsgRsp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BroadcastMsgRsp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BroadcastMsgRsp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.BroadcastMsgRsp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SystemMsgRspOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.SystemMsgRsp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    long getUserId();
+
+    /**
+     * <code>int64 time_stamp = 2;</code>
+     */
+    long getTimeStamp();
+
+    /**
+     * <code>string title = 3;</code>
+     */
+    java.lang.String getTitle();
+    /**
+     * <code>string title = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTitleBytes();
+
+    /**
+     * <code>string content = 4;</code>
+     */
+    java.lang.String getContent();
+    /**
+     * <code>string content = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getContentBytes();
+
+    /**
+     * <code>.proto.SystemMsgType type = 5;</code>
+     */
+    int getTypeValue();
+    /**
+     * <code>.proto.SystemMsgType type = 5;</code>
+     */
+    com.lsm1998.chat.proto.DataProto.SystemMsgType getType();
+  }
+  /**
+   * Protobuf type {@code proto.SystemMsgRsp}
+   */
+  public  static final class SystemMsgRsp extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.SystemMsgRsp)
+      SystemMsgRspOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SystemMsgRsp.newBuilder() to construct.
+    private SystemMsgRsp(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SystemMsgRsp() {
+      title_ = "";
+      content_ = "";
+      type_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SystemMsgRsp();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SystemMsgRsp(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              userId_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              timeStamp_ = input.readInt64();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              title_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              content_ = s;
+              break;
+            }
+            case 40: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_SystemMsgRsp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_SystemMsgRsp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.SystemMsgRsp.class, com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder.class);
+    }
+
+    public static final int USER_ID_FIELD_NUMBER = 1;
+    private long userId_;
+    /**
+     * <code>int64 user_id = 1;</code>
+     */
+    public long getUserId() {
+      return userId_;
+    }
+
+    public static final int TIME_STAMP_FIELD_NUMBER = 2;
+    private long timeStamp_;
+    /**
+     * <code>int64 time_stamp = 2;</code>
+     */
+    public long getTimeStamp() {
+      return timeStamp_;
+    }
+
+    public static final int TITLE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object title_;
+    /**
+     * <code>string title = 3;</code>
+     */
+    public java.lang.String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        title_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string title = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTitleBytes() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        title_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 4;
+    private volatile java.lang.Object content_;
+    /**
+     * <code>string content = 4;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        content_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string content = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 5;
+    private int type_;
+    /**
+     * <code>.proto.SystemMsgType type = 5;</code>
+     */
+    public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.proto.SystemMsgType type = 5;</code>
+     */
+    public com.lsm1998.chat.proto.DataProto.SystemMsgType getType() {
+      @SuppressWarnings("deprecation")
+      com.lsm1998.chat.proto.DataProto.SystemMsgType result = com.lsm1998.chat.proto.DataProto.SystemMsgType.valueOf(type_);
+      return result == null ? com.lsm1998.chat.proto.DataProto.SystemMsgType.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (userId_ != 0L) {
+        output.writeInt64(1, userId_);
+      }
+      if (timeStamp_ != 0L) {
+        output.writeInt64(2, timeStamp_);
+      }
+      if (!getTitleBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, title_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, content_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SystemMsgType.MSG.getNumber()) {
+        output.writeEnum(5, type_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (userId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, userId_);
+      }
+      if (timeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, timeStamp_);
+      }
+      if (!getTitleBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, title_);
+      }
+      if (!getContentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, content_);
+      }
+      if (type_ != com.lsm1998.chat.proto.DataProto.SystemMsgType.MSG.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(5, type_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.SystemMsgRsp)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.SystemMsgRsp other = (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) obj;
+
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
+      if (!getTitle()
+          .equals(other.getTitle())) return false;
+      if (!getContent()
+          .equals(other.getContent())) return false;
+      if (type_ != other.type_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+      hash = (37 * hash) + TIME_STAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
+      hash = (37 * hash) + TITLE_FIELD_NUMBER;
+      hash = (53 * hash) + getTitle().hashCode();
+      hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getContent().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.SystemMsgRsp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.SystemMsgRsp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.SystemMsgRsp)
+        com.lsm1998.chat.proto.DataProto.SystemMsgRspOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_SystemMsgRsp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_SystemMsgRsp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.SystemMsgRsp.class, com.lsm1998.chat.proto.DataProto.SystemMsgRsp.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.SystemMsgRsp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        userId_ = 0L;
+
+        timeStamp_ = 0L;
+
+        title_ = "";
+
+        content_ = "";
+
+        type_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_SystemMsgRsp_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRsp getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRsp build() {
+        com.lsm1998.chat.proto.DataProto.SystemMsgRsp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.SystemMsgRsp buildPartial() {
+        com.lsm1998.chat.proto.DataProto.SystemMsgRsp result = new com.lsm1998.chat.proto.DataProto.SystemMsgRsp(this);
+        result.userId_ = userId_;
+        result.timeStamp_ = timeStamp_;
+        result.title_ = title_;
+        result.content_ = content_;
+        result.type_ = type_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.SystemMsgRsp) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.SystemMsgRsp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.SystemMsgRsp other) {
+        if (other == com.lsm1998.chat.proto.DataProto.SystemMsgRsp.getDefaultInstance()) return this;
+        if (other.getUserId() != 0L) {
+          setUserId(other.getUserId());
+        }
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
+        }
+        if (!other.getTitle().isEmpty()) {
+          title_ = other.title_;
+          onChanged();
+        }
+        if (!other.getContent().isEmpty()) {
+          content_ = other.content_;
+          onChanged();
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.SystemMsgRsp parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.SystemMsgRsp) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long userId_ ;
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public long getUserId() {
+        return userId_;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder setUserId(long value) {
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 user_id = 1;</code>
+       */
+      public Builder clearUserId() {
+        
+        userId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long timeStamp_ ;
+      /**
+       * <code>int64 time_stamp = 2;</code>
+       */
+      public long getTimeStamp() {
+        return timeStamp_;
+      }
+      /**
+       * <code>int64 time_stamp = 2;</code>
+       */
+      public Builder setTimeStamp(long value) {
+        
+        timeStamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time_stamp = 2;</code>
+       */
+      public Builder clearTimeStamp() {
+        
+        timeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object title_ = "";
+      /**
+       * <code>string title = 3;</code>
+       */
+      public java.lang.String getTitle() {
+        java.lang.Object ref = title_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          title_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string title = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTitleBytes() {
+        java.lang.Object ref = title_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          title_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string title = 3;</code>
+       */
+      public Builder setTitle(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        title_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string title = 3;</code>
+       */
+      public Builder clearTitle() {
+        
+        title_ = getDefaultInstance().getTitle();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string title = 3;</code>
+       */
+      public Builder setTitleBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        title_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object content_ = "";
+      /**
+       * <code>string content = 4;</code>
+       */
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder clearContent() {
+        
+        content_ = getDefaultInstance().getContent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string content = 4;</code>
+       */
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        content_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.proto.SystemMsgType type = 5;</code>
+       */
+      public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 5;</code>
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 5;</code>
+       */
+      public com.lsm1998.chat.proto.DataProto.SystemMsgType getType() {
+        @SuppressWarnings("deprecation")
+        com.lsm1998.chat.proto.DataProto.SystemMsgType result = com.lsm1998.chat.proto.DataProto.SystemMsgType.valueOf(type_);
+        return result == null ? com.lsm1998.chat.proto.DataProto.SystemMsgType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 5;</code>
+       */
+      public Builder setType(com.lsm1998.chat.proto.DataProto.SystemMsgType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.SystemMsgType type = 5;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.SystemMsgRsp)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.SystemMsgRsp)
+    private static final com.lsm1998.chat.proto.DataProto.SystemMsgRsp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.SystemMsgRsp();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.SystemMsgRsp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SystemMsgRsp>
+        PARSER = new com.google.protobuf.AbstractParser<SystemMsgRsp>() {
+      @java.lang.Override
+      public SystemMsgRsp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SystemMsgRsp(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SystemMsgRsp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SystemMsgRsp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.SystemMsgRsp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface FileReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.FileReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 文件大小
+     * </pre>
+     *
+     * <code>int64 size = 1;</code>
+     */
+    long getSize();
+
+    /**
+     * <pre>
+     * 包数量
+     * </pre>
+     *
+     * <code>int32 count = 2;</code>
+     */
+    int getCount();
+
+    /**
+     * <code>int64 time_stamp = 3;</code>
+     */
+    long getTimeStamp();
+
+    /**
+     * <code>string file_name = 4;</code>
+     */
+    java.lang.String getFileName();
+    /**
+     * <code>string file_name = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileNameBytes();
+
+    /**
+     * <code>string file_type = 5;</code>
+     */
+    java.lang.String getFileType();
+    /**
+     * <code>string file_type = 5;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileTypeBytes();
+  }
+  /**
+   * Protobuf type {@code proto.FileReq}
+   */
+  public  static final class FileReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.FileReq)
+      FileReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FileReq.newBuilder() to construct.
+    private FileReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FileReq() {
+      fileName_ = "";
+      fileType_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FileReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FileReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              size_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              count_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              timeStamp_ = input.readInt64();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              fileName_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              fileType_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.FileReq.class, com.lsm1998.chat.proto.DataProto.FileReq.Builder.class);
+    }
+
+    public static final int SIZE_FIELD_NUMBER = 1;
+    private long size_;
+    /**
+     * <pre>
+     * 文件大小
+     * </pre>
+     *
+     * <code>int64 size = 1;</code>
+     */
+    public long getSize() {
+      return size_;
+    }
+
+    public static final int COUNT_FIELD_NUMBER = 2;
+    private int count_;
+    /**
+     * <pre>
+     * 包数量
+     * </pre>
+     *
+     * <code>int32 count = 2;</code>
+     */
+    public int getCount() {
+      return count_;
+    }
+
+    public static final int TIME_STAMP_FIELD_NUMBER = 3;
+    private long timeStamp_;
+    /**
+     * <code>int64 time_stamp = 3;</code>
+     */
+    public long getTimeStamp() {
+      return timeStamp_;
+    }
+
+    public static final int FILE_NAME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object fileName_;
+    /**
+     * <code>string file_name = 4;</code>
+     */
+    public java.lang.String getFileName() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string file_name = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileNameBytes() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FILE_TYPE_FIELD_NUMBER = 5;
+    private volatile java.lang.Object fileType_;
+    /**
+     * <code>string file_type = 5;</code>
+     */
+    public java.lang.String getFileType() {
+      java.lang.Object ref = fileType_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileType_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string file_type = 5;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileTypeBytes() {
+      java.lang.Object ref = fileType_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileType_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (size_ != 0L) {
+        output.writeInt64(1, size_);
+      }
+      if (count_ != 0) {
+        output.writeInt32(2, count_);
+      }
+      if (timeStamp_ != 0L) {
+        output.writeInt64(3, timeStamp_);
+      }
+      if (!getFileNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, fileName_);
+      }
+      if (!getFileTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, fileType_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (size_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, size_);
+      }
+      if (count_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, count_);
+      }
+      if (timeStamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, timeStamp_);
+      }
+      if (!getFileNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, fileName_);
+      }
+      if (!getFileTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, fileType_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.FileReq)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.FileReq other = (com.lsm1998.chat.proto.DataProto.FileReq) obj;
+
+      if (getSize()
+          != other.getSize()) return false;
+      if (getCount()
+          != other.getCount()) return false;
+      if (getTimeStamp()
+          != other.getTimeStamp()) return false;
+      if (!getFileName()
+          .equals(other.getFileName())) return false;
+      if (!getFileType()
+          .equals(other.getFileType())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getSize());
+      hash = (37 * hash) + COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCount();
+      hash = (37 * hash) + TIME_STAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimeStamp());
+      hash = (37 * hash) + FILE_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFileName().hashCode();
+      hash = (37 * hash) + FILE_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getFileType().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.FileReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.FileReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.FileReq)
+        com.lsm1998.chat.proto.DataProto.FileReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.FileReq.class, com.lsm1998.chat.proto.DataProto.FileReq.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.FileReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        size_ = 0L;
+
+        count_ = 0;
+
+        timeStamp_ = 0L;
+
+        fileName_ = "";
+
+        fileType_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileReq getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileReq build() {
+        com.lsm1998.chat.proto.DataProto.FileReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileReq buildPartial() {
+        com.lsm1998.chat.proto.DataProto.FileReq result = new com.lsm1998.chat.proto.DataProto.FileReq(this);
+        result.size_ = size_;
+        result.count_ = count_;
+        result.timeStamp_ = timeStamp_;
+        result.fileName_ = fileName_;
+        result.fileType_ = fileType_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.FileReq) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.FileReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.FileReq other) {
+        if (other == com.lsm1998.chat.proto.DataProto.FileReq.getDefaultInstance()) return this;
+        if (other.getSize() != 0L) {
+          setSize(other.getSize());
+        }
+        if (other.getCount() != 0) {
+          setCount(other.getCount());
+        }
+        if (other.getTimeStamp() != 0L) {
+          setTimeStamp(other.getTimeStamp());
+        }
+        if (!other.getFileName().isEmpty()) {
+          fileName_ = other.fileName_;
+          onChanged();
+        }
+        if (!other.getFileType().isEmpty()) {
+          fileType_ = other.fileType_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.FileReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.FileReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long size_ ;
+      /**
+       * <pre>
+       * 文件大小
+       * </pre>
+       *
+       * <code>int64 size = 1;</code>
+       */
+      public long getSize() {
+        return size_;
+      }
+      /**
+       * <pre>
+       * 文件大小
+       * </pre>
+       *
+       * <code>int64 size = 1;</code>
+       */
+      public Builder setSize(long value) {
+        
+        size_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 文件大小
+       * </pre>
+       *
+       * <code>int64 size = 1;</code>
+       */
+      public Builder clearSize() {
+        
+        size_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int count_ ;
+      /**
+       * <pre>
+       * 包数量
+       * </pre>
+       *
+       * <code>int32 count = 2;</code>
+       */
+      public int getCount() {
+        return count_;
+      }
+      /**
+       * <pre>
+       * 包数量
+       * </pre>
+       *
+       * <code>int32 count = 2;</code>
+       */
+      public Builder setCount(int value) {
+        
+        count_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 包数量
+       * </pre>
+       *
+       * <code>int32 count = 2;</code>
+       */
+      public Builder clearCount() {
+        
+        count_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long timeStamp_ ;
+      /**
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public long getTimeStamp() {
+        return timeStamp_;
+      }
+      /**
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public Builder setTimeStamp(long value) {
+        
+        timeStamp_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 time_stamp = 3;</code>
+       */
+      public Builder clearTimeStamp() {
+        
+        timeStamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object fileName_ = "";
+      /**
+       * <code>string file_name = 4;</code>
+       */
+      public java.lang.String getFileName() {
+        java.lang.Object ref = fileName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          fileName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string file_name = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileNameBytes() {
+        java.lang.Object ref = fileName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fileName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string file_name = 4;</code>
+       */
+      public Builder setFileName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        fileName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_name = 4;</code>
+       */
+      public Builder clearFileName() {
+        
+        fileName_ = getDefaultInstance().getFileName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_name = 4;</code>
+       */
+      public Builder setFileNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        fileName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object fileType_ = "";
+      /**
+       * <code>string file_type = 5;</code>
+       */
+      public java.lang.String getFileType() {
+        java.lang.Object ref = fileType_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          fileType_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string file_type = 5;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileTypeBytes() {
+        java.lang.Object ref = fileType_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fileType_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string file_type = 5;</code>
+       */
+      public Builder setFileType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        fileType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_type = 5;</code>
+       */
+      public Builder clearFileType() {
+        
+        fileType_ = getDefaultInstance().getFileType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string file_type = 5;</code>
+       */
+      public Builder setFileTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        fileType_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.FileReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.FileReq)
+    private static final com.lsm1998.chat.proto.DataProto.FileReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.FileReq();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.FileReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FileReq>
+        PARSER = new com.google.protobuf.AbstractParser<FileReq>() {
+      @java.lang.Override
+      public FileReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FileReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<FileReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FileReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.FileReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface FileSlicesReqOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.FileSlicesReq)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 包序号
+     * </pre>
+     *
+     * <code>int32 seq = 1;</code>
+     */
+    int getSeq();
+
+    /**
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>bytes body = 2;</code>
+     */
+    com.google.protobuf.ByteString getBody();
+  }
+  /**
+   * Protobuf type {@code proto.FileSlicesReq}
+   */
+  public  static final class FileSlicesReq extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.FileSlicesReq)
+      FileSlicesReqOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FileSlicesReq.newBuilder() to construct.
+    private FileSlicesReq(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FileSlicesReq() {
+      body_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FileSlicesReq();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FileSlicesReq(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              seq_ = input.readInt32();
+              break;
+            }
+            case 18: {
+
+              body_ = input.readBytes();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileSlicesReq_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileSlicesReq_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.lsm1998.chat.proto.DataProto.FileSlicesReq.class, com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder.class);
+    }
+
+    public static final int SEQ_FIELD_NUMBER = 1;
+    private int seq_;
+    /**
+     * <pre>
+     * 包序号
+     * </pre>
+     *
+     * <code>int32 seq = 1;</code>
+     */
+    public int getSeq() {
+      return seq_;
+    }
+
+    public static final int BODY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString body_;
+    /**
+     * <pre>
+     * 内容
+     * </pre>
+     *
+     * <code>bytes body = 2;</code>
+     */
+    public com.google.protobuf.ByteString getBody() {
+      return body_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (seq_ != 0) {
+        output.writeInt32(1, seq_);
+      }
+      if (!body_.isEmpty()) {
+        output.writeBytes(2, body_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (seq_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, seq_);
+      }
+      if (!body_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, body_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.lsm1998.chat.proto.DataProto.FileSlicesReq)) {
+        return super.equals(obj);
+      }
+      com.lsm1998.chat.proto.DataProto.FileSlicesReq other = (com.lsm1998.chat.proto.DataProto.FileSlicesReq) obj;
+
+      if (getSeq()
+          != other.getSeq()) return false;
+      if (!getBody()
+          .equals(other.getBody())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SEQ_FIELD_NUMBER;
+      hash = (53 * hash) + getSeq();
+      hash = (37 * hash) + BODY_FIELD_NUMBER;
+      hash = (53 * hash) + getBody().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.lsm1998.chat.proto.DataProto.FileSlicesReq prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.FileSlicesReq}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.FileSlicesReq)
+        com.lsm1998.chat.proto.DataProto.FileSlicesReqOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileSlicesReq_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileSlicesReq_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.lsm1998.chat.proto.DataProto.FileSlicesReq.class, com.lsm1998.chat.proto.DataProto.FileSlicesReq.Builder.class);
+      }
+
+      // Construct using com.lsm1998.chat.proto.DataProto.FileSlicesReq.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        seq_ = 0;
+
+        body_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lsm1998.chat.proto.DataProto.internal_static_proto_FileSlicesReq_descriptor;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReq getDefaultInstanceForType() {
+        return com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReq build() {
+        com.lsm1998.chat.proto.DataProto.FileSlicesReq result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.lsm1998.chat.proto.DataProto.FileSlicesReq buildPartial() {
+        com.lsm1998.chat.proto.DataProto.FileSlicesReq result = new com.lsm1998.chat.proto.DataProto.FileSlicesReq(this);
+        result.seq_ = seq_;
+        result.body_ = body_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lsm1998.chat.proto.DataProto.FileSlicesReq) {
+          return mergeFrom((com.lsm1998.chat.proto.DataProto.FileSlicesReq)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.lsm1998.chat.proto.DataProto.FileSlicesReq other) {
+        if (other == com.lsm1998.chat.proto.DataProto.FileSlicesReq.getDefaultInstance()) return this;
+        if (other.getSeq() != 0) {
+          setSeq(other.getSeq());
+        }
+        if (other.getBody() != com.google.protobuf.ByteString.EMPTY) {
+          setBody(other.getBody());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.lsm1998.chat.proto.DataProto.FileSlicesReq parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.lsm1998.chat.proto.DataProto.FileSlicesReq) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int seq_ ;
+      /**
+       * <pre>
+       * 包序号
+       * </pre>
+       *
+       * <code>int32 seq = 1;</code>
+       */
+      public int getSeq() {
+        return seq_;
+      }
+      /**
+       * <pre>
+       * 包序号
+       * </pre>
+       *
+       * <code>int32 seq = 1;</code>
+       */
+      public Builder setSeq(int value) {
+        
+        seq_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 包序号
+       * </pre>
+       *
+       * <code>int32 seq = 1;</code>
+       */
+      public Builder clearSeq() {
+        
+        seq_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString body_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>bytes body = 2;</code>
+       */
+      public com.google.protobuf.ByteString getBody() {
+        return body_;
+      }
+      /**
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>bytes body = 2;</code>
+       */
+      public Builder setBody(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        body_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 内容
+       * </pre>
+       *
+       * <code>bytes body = 2;</code>
+       */
+      public Builder clearBody() {
+        
+        body_ = getDefaultInstance().getBody();
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.FileSlicesReq)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.FileSlicesReq)
+    private static final com.lsm1998.chat.proto.DataProto.FileSlicesReq DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.lsm1998.chat.proto.DataProto.FileSlicesReq();
+    }
+
+    public static com.lsm1998.chat.proto.DataProto.FileSlicesReq getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FileSlicesReq>
+        PARSER = new com.google.protobuf.AbstractParser<FileSlicesReq>() {
+      @java.lang.Override
+      public FileSlicesReq parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FileSlicesReq(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<FileSlicesReq> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FileSlicesReq> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.lsm1998.chat.proto.DataProto.FileSlicesReq getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_MsgReq_descriptor;
   private static final 
@@ -6185,11 +13097,6 @@ public final class DataProto
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_MsgRsp_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_proto_AckReq_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_proto_AckReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_AckRsp_descriptor;
   private static final 
@@ -6215,6 +13122,36 @@ public final class DataProto
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_SendMsgRsp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_PongReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_PongReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_LeaveReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_LeaveReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_BroadcastMsgRsp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_BroadcastMsgRsp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_SystemMsgRsp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_SystemMsgRsp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_FileReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_FileReq_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_FileSlicesReq_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_FileSlicesReq_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6224,25 +13161,53 @@ public final class DataProto
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\ndata.proto\022\005proto\"\250\001\n\006MsgReq\022\037\n\007msgTyp" +
-      "e\030\001 \001(\0162\016.proto.MsgType\022\037\n\006ackReq\030\002 \001(\0132" +
-      "\r.proto.AckReqH\000\022+\n\014handShakeReq\030\003 \001(\0132\023" +
-      ".proto.HandShakeReqH\000\022\'\n\nsendMsgReq\030\004 \001(" +
-      "\0132\021.proto.SendMsgReqH\000B\006\n\004Pack\"\250\001\n\006MsgRs" +
-      "p\022\037\n\007msgType\030\001 \001(\0162\016.proto.MsgType\022\037\n\006ac" +
-      "kRsp\030\002 \001(\0132\r.proto.AckRspH\000\022+\n\014handShake" +
-      "Rsp\030\003 \001(\0132\023.proto.HandShakeRspH\000\022\'\n\nsend" +
-      "MsgRsp\030\004 \001(\0132\021.proto.SendMsgRspH\000B\006\n\004Pac" +
-      "k\"\010\n\006AckReq\"\026\n\006AckRsp\022\014\n\004code\030\001 \001(\005\"\035\n\014H" +
-      "andShakeReq\022\r\n\005token\030\001 \001(\t\"-\n\014HandShakeR" +
-      "sp\022\014\n\004code\030\001 \001(\005\022\017\n\007aes_key\030\002 \001(\t\"W\n\nSen" +
-      "dMsgReq\022\n\n\002id\030\001 \001(\003\022\r\n\005to_id\030\002 \001(\003\022\017\n\007fo" +
-      "rm_id\030\003 \001(\003\022\017\n\007content\030\004 \001(\t\022\014\n\004time\030\005 \001" +
-      "(\005\"\032\n\nSendMsgRsp\022\014\n\004code\030\001 \001(\005*y\n\007MsgTyp" +
-      "e\022\013\n\007ACK_MSG\020\000\022\021\n\rHANDSHAKE_MSG\020\001\022\014\n\010SEN" +
-      "D_MSG\020\002\022\021\n\rBROADCAST_MSG\020\003\022\023\n\017SYSTEM_SEN" +
-      "D_MSG\020\004\022\030\n\024SYSTEM_BROADCAST_MSG\020\005B#\n\026com" +
-      ".lsm1998.chat.protoB\tDataProtob\006proto3"
+      "\n\ndata.proto\022\005proto\"\241\002\n\006MsgReq\022\037\n\007msgTyp" +
+      "e\030\001 \001(\0162\016.proto.MsgType\022+\n\014handShakeReq\030" +
+      "\003 \001(\0132\023.proto.HandShakeReqH\000\022\'\n\nsendMsgR" +
+      "eq\030\004 \001(\0132\021.proto.SendMsgReqH\000\022!\n\007pongReq" +
+      "\030\006 \001(\0132\016.proto.PongReqH\000\022#\n\010leaveReq\030\007 \001" +
+      "(\0132\017.proto.LeaveReqH\000\022!\n\007fileReq\030\010 \001(\0132\016" +
+      ".proto.FileReqH\000\022-\n\rfileSlicesReq\030\t \001(\0132" +
+      "\024.proto.FileSlicesReqH\000B\006\n\004Pack\"\210\002\n\006MsgR" +
+      "sp\022\037\n\007msgType\030\001 \001(\0162\016.proto.MsgType\022\037\n\006a" +
+      "ckRsp\030\002 \001(\0132\r.proto.AckRspH\000\022+\n\014handShak" +
+      "eRsp\030\003 \001(\0132\023.proto.HandShakeRspH\000\022\'\n\nsen" +
+      "dMsgRsp\030\004 \001(\0132\021.proto.SendMsgRspH\000\0221\n\017br" +
+      "oadcastMsgRsp\030\005 \001(\0132\026.proto.BroadcastMsg" +
+      "RspH\000\022+\n\014systemMsgRsp\030\006 \001(\0132\023.proto.Syst" +
+      "emMsgRspH\000B\006\n\004Pack\"N\n\006AckRsp\022\037\n\004code\030\001 \001" +
+      "(\0162\021.proto.ResultCode\022\017\n\007user_id\030\002 \001(\003\022\022" +
+      "\n\ntime_stamp\030\003 \001(\003\"\035\n\014HandShakeReq\022\r\n\005to" +
+      "ken\030\001 \001(\t\"@\n\014HandShakeRsp\022\037\n\004code\030\001 \001(\0162" +
+      "\021.proto.ResultCode\022\017\n\007aes_key\030\002 \001(\t\"|\n\nS" +
+      "endMsgReq\022\n\n\002id\030\001 \001(\003\022\r\n\005to_id\030\002 \001(\003\022\017\n\007" +
+      "form_id\030\003 \001(\003\022\017\n\007content\030\004 \001(\t\022\022\n\ntime_s" +
+      "tamp\030\005 \001(\003\022\035\n\004type\030\006 \001(\0162\017.proto.SendTyp" +
+      "e\"|\n\nSendMsgRsp\022\n\n\002id\030\001 \001(\003\022\r\n\005to_id\030\002 \001" +
+      "(\003\022\017\n\007form_id\030\003 \001(\003\022\017\n\007content\030\004 \001(\t\022\022\n\n" +
+      "time_stamp\030\005 \001(\003\022\035\n\004type\030\006 \001(\0162\017.proto.S" +
+      "endType\"(\n\007PongReq\022\017\n\007user_id\030\001 \001(\003\022\014\n\004t" +
+      "ime\030\002 \001(\003\"\033\n\010LeaveReq\022\017\n\007user_id\030\001 \001(\003\"c" +
+      "\n\017BroadcastMsgRsp\022\014\n\004time\030\001 \001(\003\022\r\n\005title" +
+      "\030\002 \001(\t\022\017\n\007content\030\003 \001(\t\022\"\n\004type\030\004 \001(\0162\024." +
+      "proto.SystemMsgType\"w\n\014SystemMsgRsp\022\017\n\007u" +
+      "ser_id\030\001 \001(\003\022\022\n\ntime_stamp\030\002 \001(\003\022\r\n\005titl" +
+      "e\030\003 \001(\t\022\017\n\007content\030\004 \001(\t\022\"\n\004type\030\005 \001(\0162\024" +
+      ".proto.SystemMsgType\"`\n\007FileReq\022\014\n\004size\030" +
+      "\001 \001(\003\022\r\n\005count\030\002 \001(\005\022\022\n\ntime_stamp\030\003 \001(\003" +
+      "\022\021\n\tfile_name\030\004 \001(\t\022\021\n\tfile_type\030\005 \001(\t\"*" +
+      "\n\rFileSlicesReq\022\013\n\003seq\030\001 \001(\005\022\014\n\004body\030\002 \001" +
+      "(\014*\264\001\n\007MsgType\022\013\n\007ACK_MSG\020\000\022\021\n\rHANDSHAKE" +
+      "_MSG\020\001\022\014\n\010SEND_MSG\020\002\022\021\n\rBROADCAST_MSG\020\003\022" +
+      "\016\n\nSYSTEM_MSG\020\004\022\030\n\024SYSTEM_BROADCAST_MSG\020" +
+      "\005\022\014\n\010PONG_MSG\020\006\022\r\n\tLEAVE_MSG\020\007\022\014\n\010FILE_M" +
+      "SG\020\010\022\023\n\017FILE_SLICES_MSG\020\t*6\n\nResultCode\022" +
+      "\006\n\002OK\020\000\022\017\n\013CLIENT_FAIL\020\001\022\017\n\013SERVER_FAIL\020" +
+      "\002*m\n\010SendType\022\n\n\006SINGLE\020\000\022\t\n\005GROUP\020\001\022\n\n\006" +
+      "ONLINE\020\002\022\t\n\005LEAVE\020\003\022\016\n\nADD_FRIEND\020\004\022\020\n\014A" +
+      "GREE_FRIEND\020\005\022\021\n\rREFUSE_FRIEND\020\006*\"\n\rSyst" +
+      "emMsgType\022\007\n\003MSG\020\000\022\010\n\004EXIT\020\001B#\n\026com.lsm1" +
+      "998.chat.protoB\tDataProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6253,49 +13218,79 @@ public final class DataProto
     internal_static_proto_MsgReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_MsgReq_descriptor,
-        new java.lang.String[] { "MsgType", "AckReq", "HandShakeReq", "SendMsgReq", "Pack", });
+        new java.lang.String[] { "MsgType", "HandShakeReq", "SendMsgReq", "PongReq", "LeaveReq", "FileReq", "FileSlicesReq", "Pack", });
     internal_static_proto_MsgRsp_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_proto_MsgRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_MsgRsp_descriptor,
-        new java.lang.String[] { "MsgType", "AckRsp", "HandShakeRsp", "SendMsgRsp", "Pack", });
-    internal_static_proto_AckReq_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_proto_AckReq_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_proto_AckReq_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "MsgType", "AckRsp", "HandShakeRsp", "SendMsgRsp", "BroadcastMsgRsp", "SystemMsgRsp", "Pack", });
     internal_static_proto_AckRsp_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_proto_AckRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_AckRsp_descriptor,
-        new java.lang.String[] { "Code", });
+        new java.lang.String[] { "Code", "UserId", "TimeStamp", });
     internal_static_proto_HandShakeReq_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_proto_HandShakeReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_HandShakeReq_descriptor,
         new java.lang.String[] { "Token", });
     internal_static_proto_HandShakeRsp_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_proto_HandShakeRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_HandShakeRsp_descriptor,
         new java.lang.String[] { "Code", "AesKey", });
     internal_static_proto_SendMsgReq_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_proto_SendMsgReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_SendMsgReq_descriptor,
-        new java.lang.String[] { "Id", "ToId", "FormId", "Content", "Time", });
+        new java.lang.String[] { "Id", "ToId", "FormId", "Content", "TimeStamp", "Type", });
     internal_static_proto_SendMsgRsp_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_proto_SendMsgRsp_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_SendMsgRsp_descriptor,
-        new java.lang.String[] { "Code", });
+        new java.lang.String[] { "Id", "ToId", "FormId", "Content", "TimeStamp", "Type", });
+    internal_static_proto_PongReq_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_proto_PongReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_PongReq_descriptor,
+        new java.lang.String[] { "UserId", "Time", });
+    internal_static_proto_LeaveReq_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_proto_LeaveReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_LeaveReq_descriptor,
+        new java.lang.String[] { "UserId", });
+    internal_static_proto_BroadcastMsgRsp_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_proto_BroadcastMsgRsp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_BroadcastMsgRsp_descriptor,
+        new java.lang.String[] { "Time", "Title", "Content", "Type", });
+    internal_static_proto_SystemMsgRsp_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_proto_SystemMsgRsp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_SystemMsgRsp_descriptor,
+        new java.lang.String[] { "UserId", "TimeStamp", "Title", "Content", "Type", });
+    internal_static_proto_FileReq_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_proto_FileReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_FileReq_descriptor,
+        new java.lang.String[] { "Size", "Count", "TimeStamp", "FileName", "FileType", });
+    internal_static_proto_FileSlicesReq_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_proto_FileSlicesReq_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_FileSlicesReq_descriptor,
+        new java.lang.String[] { "Seq", "Body", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

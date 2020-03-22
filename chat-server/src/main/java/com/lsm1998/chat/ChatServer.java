@@ -7,12 +7,15 @@ package com.lsm1998.chat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class ChatServer
 {
+    public static ApplicationContext context;
+
     public static void main(String[] args)
     {
-        SpringApplication.run(ChatServer.class, args);
+        context = SpringApplication.run(ChatServer.class, args);
     }
 }

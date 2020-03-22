@@ -1,3 +1,17 @@
+# 服务端地址
 chat-server:
   host: 127.0.0.1
   port: 8888
+
+
+app:
+  # BGM不能少
+  bgm:
+    play: false
+    pool: true
+    dir: static/sound
+
+
+spring:
+  application:
+    name: client
