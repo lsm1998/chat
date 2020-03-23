@@ -7,9 +7,12 @@ package com.lsm1998.chat.security.filter;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.lsm1998.chat.domain.User;
 import com.lsm1998.chat.security.JwtUser;
 import com.lsm1998.chat.security.LoginUser;
 import com.lsm1998.chat.security.SecurityConstants;
+import com.lsm1998.chat.service.UserService;
 import com.lsm1998.chat.utils.JwtTokenUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +30,7 @@ import java.util.stream.Collectors;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 {
+    private Gson gson;
     private ThreadLocal<Boolean> rememberMe = new ThreadLocal<>();
     private AuthenticationManager authenticationManager;
 
@@ -35,6 +39,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
         // 设置URL，以确定是否需要身份验证
         super.setFilterProcessesUrl(SecurityConstants.AUTH_LOGIN_URL);
+        gson=new Gson();
     }
 
     @Override
@@ -70,8 +75,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
-                                            Authentication authentication)
-    {
+                                            Authentication authentication) throws IOException {
 
         JwtUser jwtAdmin = (JwtUser) authentication.getPrincipal();
         List<String> roles = jwtAdmin.getAuthorities()
@@ -82,6 +86,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String token = JwtTokenUtil.createToken(jwtAdmin.getUsername(), roles, rememberMe.get());
         // Http Response Header 中返回 Token
         response.setHeader(SecurityConstants.TOKEN_HEADER, token);
+        response.setContentType("application/json");
+        // 隐藏敏感数据
+        jwtAdmin.getCurrUser().setPassword(null);
+        jwtAdmin.getCurrUser().setSalt(null);
+        jwtAdmin.getCurrUser().setRoles(null);
+        jwtAdmin.getCurrUser().setAesKey(null);
+        jwtAdmin.getCurrUser().setCreateTime(null);
+        response.getWriter().print(gson.toJson(jwtAdmin.getCurrUser()));
     }
 
     @Override

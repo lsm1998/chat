@@ -19,11 +19,8 @@ import java.util.List;
 @Data
 public class JwtUser implements UserDetails
 {
-    private Long id;
-    private String nickName;
-    private String userName;
-    private String password;
     private Collection<? extends GrantedAuthority> authorities;
+    private User currUser;
 
     public JwtUser()
     {
@@ -31,11 +28,8 @@ public class JwtUser implements UserDetails
 
     public JwtUser(User user)
     {
-        this.id = user.getId();
-        this.userName = user.getUsername();
-        this.nickName = user.getNickname();
-        this.password = user.getPassword();
         this.authorities = getRoles(user);
+        this.currUser=user;
     }
 
     @Override
@@ -47,13 +41,13 @@ public class JwtUser implements UserDetails
     @Override
     public String getPassword()
     {
-        return password;
+        return currUser.getPassword();
     }
 
     @Override
     public String getUsername()
     {
-        return userName;
+        return currUser.getUsername();
     }
 
     @Override
