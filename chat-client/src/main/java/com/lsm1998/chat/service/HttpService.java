@@ -19,6 +19,8 @@ public class HttpService
 
     private static final String AUTH_KEY = "Authorization";
 
+    private static final int OK = 200;
+
     private String token;
 
     public boolean login(String username, String password)
@@ -27,7 +29,7 @@ public class HttpService
         try
         {
             HttpResponse<String> response = HTTPClientUtil.post(LOGIN_URL, json, null);
-            if (response.statusCode() == 200)
+            if (response.statusCode() == OK)
             {
                 response.headers().map().forEach((k, v) ->
                 {

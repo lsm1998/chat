@@ -15,19 +15,29 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class ChatClient
 {
-    // 启动入口类
+    /**
+     * 启动入口类
+     */
     private final static Class<? extends BasePage> START_CLASS = LoginPage.class;
 
     public static void main(String[] args)
     {
-        // JVM启动参数  => -Djava.awt.headless=false
-        ConfigurableApplicationContext context = SpringApplication.run(ChatClient.class, args);
-        start(context, START_CLASS);
+        ConfigurableApplicationContext context = SpringApplication.run(ChatClient.class, appendArgs(args));
+        BasePage mainPage = context.getBean(ChatClient.START_CLASS);
+        mainPage.showPage();
     }
 
-    private static void start(ApplicationContext context, Class<? extends BasePage> clazz)
+    /**
+     * SpringBoot结合使用Swing需要追加启动参数
+     *
+     * @param args
+     * @return
+     */
+    private static String[] appendArgs(String[] args)
     {
-        BasePage mainPage = context.getBean(clazz);
-        mainPage.showPage();
+        String[] temp=new String[args.length+1];
+        System.arraycopy(args,0,temp,0,args.length);
+        temp[args.length] = "-Djava.awt.headless=false";
+        return temp;
     }
 }

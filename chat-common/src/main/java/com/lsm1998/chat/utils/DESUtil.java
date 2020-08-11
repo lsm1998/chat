@@ -6,45 +6,66 @@
 package com.lsm1998.chat.utils;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import java.util.Base64;
+import java.util.UUID;
 
 public class DESUtil
 {
-    /*
-     * 生成密钥
+    /**
+     * 算法名称
      */
-    public static String getKey() throws Exception
-    {
-        KeyGenerator keyGen = KeyGenerator.getInstance("DES");
-        keyGen.init(56);
-        SecretKey secretKey = keyGen.generateKey();
-        return new String(secretKey.getEncoded());
-    }
+    private static final String KEY_ALGORITHM = "DES";
 
-
-    /*
-     * DES 加密
+    /**
+     * 算法名称/加密模式/填充方式
      */
-    public static String encrypt(String content, String key) throws Exception
+    private static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
+
+    /**
+     * 加密
+     * @param data 要加密的数据
+     * @return 加密后的字符串，已使用base64进行编码
+     */
+    public static String encrypt(String data,String key) throws Exception
     {
-        SecretKey secretKey = new SecretKeySpec(key.getBytes(), "DES");
-        Cipher cipher = Cipher.getInstance("DES");
+        //创建秘钥
+        DESKeySpec desKeySpec = new DESKeySpec(key.getBytes());
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
+        SecretKey secretKey = secretKeyFactory.generateSecret(desKeySpec);
+        //加密
+        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        return new String(cipher.doFinal(content.getBytes()));
+        byte[] result =  cipher.doFinal(data.getBytes());
+        //使用base64进行编码
+        return Base64.getEncoder().encodeToString(result);
     }
 
-
-    /*
-     * DES 解密
+    /**
+     * 解密
+     * @param data 要解密的数据，已经使用base64进行编码过的
+     * @return 解密后的字符转
      */
-    public static String decrypt(String content, String key) throws Exception
+    public static String decrypt(String data,String key) throws Exception
     {
-        SecretKey secretKey = new SecretKeySpec(key.getBytes(), "DES");
-        Cipher cipher = Cipher.getInstance("DES");
+        byte[] bs = Base64.getDecoder().decode(data);
+        DESKeySpec desKeySpec = new DESKeySpec(key.getBytes());
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
+        SecretKey secretKey = secretKeyFactory.generateSecret(desKeySpec);
+        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] plainBytes = cipher.doFinal(content.getBytes());
-        return new String(plainBytes);
+        byte[] result =  cipher.doFinal(bs);
+        return new String(result);
+    }
+
+    /**
+     * 生成密钥
+     * @return
+     */
+    public static String getKey()
+    {
+        return UUID.randomUUID().toString().substring(0,8);
     }
 }

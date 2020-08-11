@@ -19,10 +19,6 @@ public class HTTPTest
         String json = "{\"username\": \"test1\", \"password\": \"1234567\",\"rememberMe\":true}";
         HttpResponse<String> response = HTTPClientUtil.post(url, json, null);
         System.out.println(response.statusCode());
-        response.headers().map().forEach((k, v) ->
-        {
-            System.out.println("key=" + k);
-            System.out.println("value=" + v);
-        });
+        response.headers().map().forEach((k, v) -> System.out.println("key=" + k + ",value=" + v));
     }
 }
